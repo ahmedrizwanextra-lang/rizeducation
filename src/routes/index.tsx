@@ -79,7 +79,7 @@ function Home() {
       <header className="sticky top-0 z-50 border-b border-border/60 bg-background/85 backdrop-blur">
         <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
           <a href="#top" className="flex items-center gap-2">
-            <img src="/logo.png" alt="Riz Education Consultants" className="h-11 w-auto md:h-14" />
+            <img src="/logo.png" alt="Riz Education Consultants" className="h-14 w-auto md:h-20" />
           </a>
           <ul className="hidden gap-8 text-sm font-medium md:flex">
             {navLinks.map((l) => (
