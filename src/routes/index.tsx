@@ -69,10 +69,10 @@ function Home() {
       <header className="sticky top-0 z-50 border-b border-border/60 bg-background/85 backdrop-blur">
         <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
           <a href="#top" className="flex items-center gap-2">
-            <span className="grid h-9 w-9 place-items-center rounded-md bg-primary text-primary-foreground font-display text-lg">R</span>
-            <span className="font-display text-lg tracking-tight">RIZ<span className="text-accent">.</span></span>
+            <img src={rizLogo.url} alt="Riz Education Consultants" className="h-10 w-auto md:h-11" />
           </a>
           <ul className="hidden gap-8 text-sm font-medium md:flex">
+
             <li><a href="#destinations" className="hover:text-accent">Destinations</a></li>
             <li><a href="#services" className="hover:text-accent">Services</a></li>
             <li><a href="#process" className="hover:text-accent">Process</a></li>
