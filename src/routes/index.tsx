@@ -1,7 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
 import heroImg from "@/assets/hero-students.jpg";
 import studentImg from "@/assets/student-portrait.jpg";
 import rizLogo from "@/assets/riz-logo.png.asset.json";
+
 
 
 export const Route = createFileRoute("/")({
@@ -63,30 +65,68 @@ const testimonials = [
 ];
 
 function Home() {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const navLinks = [
+    { href: "#destinations", label: "Destinations" },
+    { href: "#services", label: "Services" },
+    { href: "#process", label: "Process" },
+    { href: "#wins", label: "Wins" },
+    { href: "#contact", label: "Contact" },
+  ];
   return (
     <div className="min-h-screen bg-background text-foreground">
       {/* NAV */}
       <header className="sticky top-0 z-50 border-b border-border/60 bg-background/85 backdrop-blur">
         <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
           <a href="#top" className="flex items-center gap-2">
-            <img src={rizLogo.url} alt="Riz Education Consultants" className="h-10 w-auto md:h-11" />
+            <img src={rizLogo.url} alt="Riz Education Consultants" className="h-9 w-auto md:h-11" />
           </a>
           <ul className="hidden gap-8 text-sm font-medium md:flex">
-
-            <li><a href="#destinations" className="hover:text-accent">Destinations</a></li>
-            <li><a href="#services" className="hover:text-accent">Services</a></li>
-            <li><a href="#process" className="hover:text-accent">Process</a></li>
-            <li><a href="#wins" className="hover:text-accent">Wins</a></li>
-            <li><a href="#contact" className="hover:text-accent">Contact</a></li>
+            {navLinks.map((l) => (
+              <li key={l.href}><a href={l.href} className="hover:text-accent">{l.label}</a></li>
+            ))}
           </ul>
           <a
             href="#contact"
-            className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition hover:bg-accent"
+            className="hidden md:inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition hover:bg-accent"
           >
             Book free call →
           </a>
+          <button
+            type="button"
+            aria-label="Toggle menu"
+            aria-expanded={menuOpen}
+            onClick={() => setMenuOpen((v) => !v)}
+            className="inline-flex md:hidden h-10 w-10 items-center justify-center rounded-full border-2 border-primary"
+          >
+            <span className="relative block h-3.5 w-5">
+              <span className={`absolute left-0 top-0 h-0.5 w-5 bg-primary transition ${menuOpen ? "translate-y-1.5 rotate-45" : ""}`} />
+              <span className={`absolute left-0 bottom-0 h-0.5 w-5 bg-primary transition ${menuOpen ? "-translate-y-1.5 -rotate-45" : ""}`} />
+            </span>
+          </button>
         </nav>
+        {menuOpen && (
+          <div className="md:hidden border-t border-border/60 bg-background">
+            <ul className="mx-auto flex max-w-7xl flex-col gap-1 px-6 py-4 text-base font-semibold">
+              {navLinks.map((l) => (
+                <li key={l.href}>
+                  <a href={l.href} onClick={() => setMenuOpen(false)} className="block py-2 hover:text-accent">{l.label}</a>
+                </li>
+              ))}
+              <li>
+                <a
+                  href="#contact"
+                  onClick={() => setMenuOpen(false)}
+                  className="mt-2 inline-flex w-full items-center justify-center rounded-full bg-primary px-5 py-3 text-sm font-bold text-primary-foreground"
+                >
+                  Book free call →
+                </a>
+              </li>
+            </ul>
+          </div>
+        )}
       </header>
+
 
       {/* HERO */}
       <section id="top" className="relative overflow-hidden noise-bg">
