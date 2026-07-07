@@ -77,19 +77,25 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Riz Education Consultants — Study in USA, UK, Canada & Australia" },
+      { title: "Riz Education Consultants — Undergrad Admissions to USA, UK, Canada & Australia" },
       {
         name: "description",
         content:
           "Undergraduate admissions consultancy for A-level students. Get into top universities in the USA, UK, Canada and Australia with Riz Education Consultants.",
       },
-      { property: "og:title", content: "Riz Education Consultants" },
+      { property: "og:title", content: "Riz Education Consultants — Undergrad Admissions to USA, UK, Canada & Australia" },
       {
         property: "og:description",
         content: "From A-levels to your dream campus abroad — expert admissions guidance.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Riz Education Consultants — Undergrad Admissions to USA, UK, Canada & Australia" },
+      { name: "description", content: "Riz Education Consultants helps A-level students land undergraduate offers from top universities in the USA, UK, Canada and Australia. Expert guidance from application to visa." },
+      { property: "og:description", content: "Riz Education Consultants helps A-level students land undergraduate offers from top universities in the USA, UK, Canada and Australia. Expert guidance from application to visa." },
+      { name: "twitter:description", content: "Riz Education Consultants helps A-level students land undergraduate offers from top universities in the USA, UK, Canada and Australia. Expert guidance from application to visa." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/0c5bdf20-2d3e-4215-a2e4-b79c20b0b7eb/id-preview-c3c1bdf2--cab0c5da-22b0-49a3-b957-10eba0611546.lovable.app-1783392917929.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/0c5bdf20-2d3e-4215-a2e4-b79c20b0b7eb/id-preview-c3c1bdf2--cab0c5da-22b0-49a3-b957-10eba0611546.lovable.app-1783392917929.png" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
