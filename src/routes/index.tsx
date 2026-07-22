@@ -1,14 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 
-// Import your images
-import heroImg from "@/assets/hero-students.jpg";
-import ukImg from "@/assets/uk.jpg";
-import canadaImg from "@/assets/canada.jpg";
-import australiaImg from "@/assets/australia.jpg";
-import usImg from "@/assets/us.jpg";
-import europeImg from "@/assets/europe.jpg";
-
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
@@ -17,85 +9,18 @@ export const Route = createFileRoute("/")({
         name: "description",
         content: "Expert counselling for O/A Level students to help you study at top universities worldwide.",
       },
-      { property: "og:title", content: "Pathway Education Counselling" },
-      { property: "og:description", content: "Your Future. Our Guidance." },
-      { property: "og:type", content: "website" },
     ],
   }),
   component: Home,
 });
 
-const services = [
-  { 
-    icon: "compass",
-    title: "Career Counselling", 
-    desc: "We help you identify the right career and university based on your goals." 
-  },
-  { 
-    icon: "university",
-    title: "University Shortlisting", 
-    desc: "Personalized list of top universities that match your profile." 
-  },
-  { 
-    icon: "file-alt",
-    title: "Application Support", 
-    desc: "We guide you through each step of the application process." 
-  },
-  { 
-    icon: "passport",
-    title: "Visa Guidance", 
-    desc: "Expert support for visa applications and interviews." 
-  },
-  { 
-    icon: "plane",
-    title: "Pre-Departure Support", 
-    desc: "From accommodation to travel, we've got you covered." 
-  },
-  { 
-    icon: "graduation-cap",
-    title: "Post-Arrival Support", 
-    desc: "Assistance even after you reach your destination university." 
-  },
-];
-
-const destinations = [
-  { 
-    name: "United Kingdom", 
-    desc: "Top universities. Diverse culture. Global exposure.",
-    flag: "🇧",
-    image: ukImg
-  },
-  { 
-    name: "Canada", 
-    desc: "Quality education. PGWP opportunities.",
-    flag: "🇨🇦",
-    image: canadaImg
-  },
-  { 
-    name: "Australia", 
-    desc: "World-class education. Great lifestyle.",
-    flag: "🇦",
-    image: australiaImg
-  },
-  { 
-    name: "United States", 
-    desc: "Endless opportunities. World-leading institutions.",
-    flag: "🇺",
-    image: usImg
-  },
-  { 
-    name: "Europe", 
-    desc: "Affordable education. Rich cultural experience.",
-    flag: "🇪",
-    image: europeImg
-  },
-];
-
 function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-white text-[#1a2744] font-['Inter',sans-serif]">
+    <div className="min-h-screen bg-white font-sans">
+      {/* Add Font Awesome */}
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
       
       {/* NAVIGATION */}
       <header className="sticky top-0 z-50 bg-white shadow-sm">
@@ -128,22 +53,10 @@ function Home() {
             <i className="fas fa-bars text-2xl"></i>
           </button>
         </nav>
-        
-        {menuOpen && (
-          <div className="border-t bg-white md:hidden">
-            <ul className="flex flex-col gap-2 px-6 py-4">
-              {['Home', 'About', 'Services', 'Universities', 'Resources', 'Success Stories', 'Contact'].map((item) => (
-                <li key={item}>
-                  <a href="#" className="block py-2">{item}</a>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
       </header>
 
       {/* HERO SECTION */}
-      <section className="relative flex items-center gap-10 px-6 py-16 md:py-20">
+      <section className="flex items-center gap-10 px-6 py-16 md:py-20">
         <div className="mx-auto grid max-w-7xl grid-cols-1 gap-12 md:grid-cols-2">
           <div className="flex flex-col justify-center">
             <h1 className="text-6xl font-black leading-tight text-[#1a2744] md:text-7xl">
@@ -185,7 +98,11 @@ function Home() {
           </div>
           
           <div className="relative">
-            <img src={heroImg} alt="Student studying" className="h-full w-full rounded-2xl object-cover" />
+            <img 
+              src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=600&h=500&fit=crop" 
+              alt="Student studying" 
+              className="h-full w-full rounded-2xl object-cover" 
+            />
             <div className="absolute right-0 top-5 rounded-xl bg-[#1a2744] px-7 py-6 text-white shadow-xl">
               <div className="mb-2 flex items-center gap-2 text-sm">
                 <i className="fas fa-users text-[#f0b429]"></i>
@@ -214,7 +131,14 @@ function Home() {
           </p>
           
           <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-6">
-            {services.map((service) => (
+            {[
+              { icon: "compass", title: "Career Counselling", desc: "We help you identify the right career and university based on your goals." },
+              { icon: "university", title: "University Shortlisting", desc: "Personalized list of top universities that match your profile." },
+              { icon: "file-alt", title: "Application Support", desc: "We guide you through each step of the application process." },
+              { icon: "passport", title: "Visa Guidance", desc: "Expert support for visa applications and interviews." },
+              { icon: "plane", title: "Pre-Departure Support", desc: "From accommodation to travel, we've got you covered." },
+              { icon: "graduation-cap", title: "Post-Arrival Support", desc: "Assistance even after you reach your destination university." },
+            ].map((service) => (
               <div key={service.title} className="rounded-xl bg-white p-8 text-left text-[#1a2744] shadow-lg transition hover:-translate-y-1 hover:shadow-xl">
                 <div className="mb-4 flex h-14 w-14 items-center justify-center">
                   <i className={`fas fa-${service.icon} text-3xl`}></i>
@@ -234,10 +158,16 @@ function Home() {
           <div className="mx-auto my-4 h-1 w-12 rounded bg-[#f0b429]"></div>
           
           <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-5">
-            {destinations.map((dest) => (
+            {[
+              { name: "United Kingdom", desc: "Top universities. Diverse culture. Global exposure.", flag: "🇬🇧", img: "https://images.unsplash.com/photo-1529655683826-aba9b3e77383?w=400&h=250&fit=crop" },
+              { name: "Canada", desc: "Quality education. PGWP opportunities.", flag: "🇨🇦", img: "https://images.unsplash.com/photo-1517935706615-2717063c2225?w=400&h=250&fit=crop" },
+              { name: "Australia", desc: "World-class education. Great lifestyle.", flag: "🇺", img: "https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?w=400&h=250&fit=crop" },
+              { name: "United States", desc: "Endless opportunities. World-leading institutions.", flag: "🇸", img: "https://images.unsplash.com/photo-1485738422979-f5c462d49f04?w=400&h=250&fit=crop" },
+              { name: "Europe", desc: "Affordable education. Rich cultural experience.", flag: "🇺", img: "https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=400&h=250&fit=crop" },
+            ].map((dest) => (
               <div key={dest.name} className="overflow-hidden rounded-xl bg-white shadow-lg transition hover:-translate-y-1 hover:shadow-xl">
                 <div className="relative h-40">
-                  <img src={dest.image} alt={dest.name} className="h-full w-full object-cover" />
+                  <img src={dest.img} alt={dest.name} className="h-full w-full object-cover" />
                   <div className="absolute -bottom-4 left-4 flex h-9 w-9 items-center justify-center rounded-full border-2 border-white bg-white text-xl shadow-lg">
                     {dest.flag}
                   </div>
@@ -300,15 +230,19 @@ function Home() {
             Trusted by Students Across Pakistan
           </div>
           <div className="flex items-center gap-10">
-            <div className="rounded bg-[#c8102e] px-3 py-1 font-bold text-white">LSE</div>
-            <div className="text-xs font-bold uppercase text-[#1a2744]">University of<br />Toronto</div>
-            <div className="text-xs font-bold uppercase text-[#1a2744]">University of<br />Melbourne</div>
-            <div className="text-xs font-bold text-[#1a2744]">
-              <div>NUS</div>
+            <div className="rounded bg-[#c8102e] px-3 py-1 font-bold text-white text-lg">LSE</div>
+            <div className="text-center">
+              <div className="text-xs font-bold uppercase text-[#1a2744]">University of<br />Toronto</div>
+            </div>
+            <div className="text-center">
+              <div className="text-xs font-bold uppercase text-[#1a2744]">University of<br />Melbourne</div>
+            </div>
+            <div className="text-center">
+              <div className="text-xs font-bold text-[#1a2744]">NUS</div>
               <div className="text-[9px] text-gray-500">National University of Singapore</div>
             </div>
-            <div className="text-xs font-bold text-[#1a2744]">
-              <div>UC</div>
+            <div className="text-center">
+              <div className="text-xs font-bold text-[#1a2744]">UC</div>
               <div className="text-[9px] text-gray-500">University of Canterbury</div>
             </div>
           </div>
