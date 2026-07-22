@@ -91,30 +91,13 @@ function About() {
             </div>
           </a>
 
-          <ul className="hidden gap-8 text-sm font-medium md:flex">
-            {[
-              { name: "Home", href: "/" },
-              { name: "About", href: "/about" },
-              { name: "Services", href: "/services" },
-              { name: "Universities", href: "/universities" },
-              { name: "Resources", href: "/resources" },
-              { name: "Success Stories", href: "/success-stories" },
-              { name: "Contact", href: "/contact" },
-            ].map((item) => (
-              <li key={item.name}>
-                <a
-                  href={item.href}
-                  className={`hover:text-[#1a2744] ${
-                    item.name === "About"
-                      ? "text-[#1a2744] relative after:absolute after:bottom-[-6px] after:left-0 after:right-0 after:h-0.5 after:bg-[#1a2744]"
-                      : "text-gray-700"
-                  }`}
-                >
-                  {item.name}
-                </a>
-              </li>
-            ))}
-          </ul>
+         <ul className="hidden gap-8 text-sm font-medium md:flex">
+  <li><Link to="/" className="text-gray-700 hover:text-[#1a2744]">Home</Link></li>
+  <li><Link to="/about" className="text-gray-700 hover:text-[#1a2744]">About</Link></li>
+  <li><Link to="/process" className="text-gray-700 hover:text-[#1a2744]">Framework</Link></li>
+  <li><Link to="/universities" className="text-gray-700 hover:text-[#1a2744]">Universities</Link></li>
+  <li><Link to="/contact" className="text-gray-700 hover:text-[#1a2744]">Contact</Link></li>
+</ul>
 
           <a
             href="/contact"
