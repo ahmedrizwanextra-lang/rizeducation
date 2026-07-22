@@ -37,7 +37,7 @@ function Home() {
           <ul className="hidden gap-8 text-sm font-medium md:flex">
             <li><a href="/" className="text-[#1a2744] relative after:absolute after:bottom-[-6px] after:left-0 after:right-0 after:h-0.5 after:bg-[#1a2744]">Home</a></li>
             <li><a href="/about" className="text-gray-700 hover:text-[#1a2744]">About</a></li>
-            <li><a href="/process" className="text-gray-700 hover:text-[#1a2744]">Framework</a></li>
+            <li><a href="/framework" className="text-gray-700 hover:text-[#1a2744]">Framework</a></li>
             <li><a href="/universities" className="text-gray-700 hover:text-[#1a2744]">Universities</a></li>
             <li><a href="/contact" className="text-gray-700 hover:text-[#1a2744]">Contact</a></li>
           </ul>
