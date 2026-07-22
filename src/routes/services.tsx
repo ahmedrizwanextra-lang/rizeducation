@@ -78,7 +78,7 @@ function Services() {
           <ul className="hidden gap-8 text-sm font-medium md:flex">
   <li><Link to="/" className="text-gray-700 hover:text-[#1a2744]">Home</Link></li>
   <li><Link to="/about" className="text-gray-700 hover:text-[#1a2744]">About</Link></li>
-  <li><Link to="/process" className="text-gray-700 hover:text-[#1a2744]">Framework</Link></li>
+  <li><Link to="/framework" className="text-gray-700 hover:text-[#1a2744]">Framework</Link></li>
   <li><Link to="/universities" className="text-gray-700 hover:text-[#1a2744]">Universities</Link></li>
   <li><Link to="/contact" className="text-gray-700 hover:text-[#1a2744]">Contact</Link></li>
 </ul>
