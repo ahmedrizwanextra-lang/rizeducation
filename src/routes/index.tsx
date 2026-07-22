@@ -169,7 +169,7 @@ function Home() {
           <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-5">
             {[
               { name: "United Kingdom", desc: "Top universities. Diverse culture. Global exposure.", flag: "🇬🇧", img: "https://images.unsplash.com/photo-1529655683826-aba9b3e77383?w=400&h=250&fit=crop" },
-              { name: "Canada", desc: "Quality education. PGWP opportunities.", flag: "🇨🇦", img: "https://images.unsplash.com/photo-1517935706615-2717063c2225?w=400&h=250&fit=crop" },
+              { name: "Canada", desc: "Quality education. PGWP opportunities.", flag: "🇦", img: "https://images.unsplash.com/photo-1517935706615-2717063c2225?w=400&h=250&fit=crop" },
               { name: "Australia", desc: "World-class education. Great lifestyle.", flag: "🇺", img: "https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?w=400&h=250&fit=crop" },
               { name: "United States", desc: "Endless opportunities. World-leading institutions.", flag: "🇺", img: "https://images.unsplash.com/photo-1485738422979-f5c462d49f04?w=400&h=250&fit=crop" },
               { name: "Europe", desc: "Affordable education. Rich cultural experience.", flag: "🇪🇺", img: "https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=400&h=250&fit=crop" },
