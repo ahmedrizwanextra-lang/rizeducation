@@ -38,7 +38,7 @@ function Home() {
             <li><a href="/" className="text-[#1a2744] relative after:absolute after:bottom-[-6px] after:left-0 after:right-0 after:h-0.5 after:bg-[#1a2744]">Home</a></li>
             <li><a href="/about" className="text-gray-700 hover:text-[#1a2744]">About</a></li>
             <li><a href="/services" className="text-gray-700 hover:text-[#1a2744]">Services</a></li>
-            <li><a href="/universities" className="text-gray-700 hover:text-[#1a2744]">Universities</a></li>
+            <li><a href="/Universities" className="text-gray-700 hover:text-[#1a2744]">Universities</a></li>
             <li><a href="/resources" className="text-gray-700 hover:text-[#1a2744]">Resources</a></li>
             <li><a href="/success-stories" className="text-gray-700 hover:text-[#1a2744]">Success Stories</a></li>
             <li><a href="/contact" className="text-gray-700 hover:text-[#1a2744]">Contact</a></li>
