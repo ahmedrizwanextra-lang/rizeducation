@@ -80,7 +80,7 @@ function Services() {
               { name: "Home", href: "/" },
               { name: "About", href: "/about" },
               { name: "Services", href: "/services" },
-              { name: "Process", href: "/process" },
+              { name: "Framework", href: "/Framework" },
               { name: "Universities", href: "/universities" },
               { name: "Resources", href: "/resources" },
               { name: "Success Stories", href: "/success-stories" },
