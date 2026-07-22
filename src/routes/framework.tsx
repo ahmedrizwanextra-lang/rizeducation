@@ -1,9 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
 
 export const Route = createFileRoute("/process")({
   head: () => ({
     meta: [
-      { title: "Our Process — Pathway Education Counselling" },
+      { title: "Our Framework — Pathway Education Counselling" },
       {
         name: "description",
         content: "Our proven 5-step process to help you get into your dream university.",
@@ -47,6 +48,8 @@ const processSteps = [
 ];
 
 function Process() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
     <div className="min-h-screen bg-white font-sans text-[#1a2744]">
       <link
@@ -67,27 +70,44 @@ function Process() {
             </div>
           </a>
 
-       <ul className="hidden gap-8 text-sm font-medium md:flex">
-  <li><Link to="/" className="text-gray-700 hover:text-[#1a2744]">Home</Link></li>
-  <li><Link to="/about" className="text-gray-700 hover:text-[#1a2744]">About</Link></li>
-  <li><Link to="/process" className="text-gray-700 hover:text-[#1a2744]">Framework</Link></li>
-  <li><Link to="/universities" className="text-gray-700 hover:text-[#1a2744]">Universities</Link></li>
-  <li><Link to="/contact" className="text-gray-700 hover:text-[#1a2744]">Contact</Link></li>
-</ul>
+          <ul className="hidden gap-8 text-sm font-medium md:flex">
+            <li><a href="/" className="text-gray-700 hover:text-[#1a2744]">Home</a></li>
+            <li><a href="/about" className="text-gray-700 hover:text-[#1a2744]">About</a></li>
+            <li><a href="/process" className="text-[#1a2744] relative after:absolute after:bottom-[-6px] after:left-0 after:right-0 after:h-0.5 after:bg-[#1a2744]">Framework</a></li>
+            <li><a href="/universities" className="text-gray-700 hover:text-[#1a2744]">Universities</a></li>
+            <li><a href="/contact" className="text-gray-700 hover:text-[#1a2744]">Contact</a></li>
+          </ul>
+
           <a
             href="/contact"
             className="hidden rounded-lg bg-[#f0b429] px-6 py-3 text-sm font-semibold text-[#1a2744] transition hover:bg-[#d9a020] md:inline-block"
           >
             Book a Free Consultation
           </a>
+
+          <button onClick={() => setMenuOpen(!menuOpen)} className="md:hidden">
+            <i className="fas fa-bars text-2xl"></i>
+          </button>
         </nav>
+
+        {menuOpen && (
+          <div className="border-t bg-white md:hidden">
+            <ul className="flex flex-col gap-2 px-6 py-4">
+              <li><a href="/" className="block py-2">Home</a></li>
+              <li><a href="/about" className="block py-2">About</a></li>
+              <li><a href="/process" className="block py-2">Framework</a></li>
+              <li><a href="/universities" className="block py-2">Universities</a></li>
+              <li><a href="/contact" className="block py-2">Contact</a></li>
+            </ul>
+          </div>
+        )}
       </header>
 
       {/* HERO */}
       <section className="px-6 py-16 md:py-20 text-center">
         <div className="mx-auto max-w-4xl">
           <div className="text-sm font-bold uppercase tracking-widest text-[#f0b429]">
-            Our Process
+            Our Framework
           </div>
           <h1 className="mt-3 text-5xl font-black leading-tight text-[#1a2744] md:text-6xl">
             Your Journey to Success,<br />Step by Step.
@@ -196,7 +216,7 @@ function Process() {
       <footer className="bg-[#1a2744] px-6 py-16 text-white">
         <div className="mx-auto grid max-w-7xl gap-10 md:grid-cols-2 lg:grid-cols-5">
           <div className="lg:col-span-1">
-            <div className="flex items-center gap-2">
+            <a href="/" className="flex items-center gap-2">
               <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-white">
                 <i className="fas fa-graduation-cap text-xl text-[#1a2744]"></i>
               </div>
@@ -204,7 +224,7 @@ function Process() {
                 <span className="text-lg font-extrabold text-white">Pathway</span>
                 <span className="text-[10px] text-gray-300">Education Counselling</span>
               </div>
-            </div>
+            </a>
             <p className="mt-4 text-sm text-gray-300 leading-relaxed">
               Guiding O/A Level students in Pakistan to top universities worldwide.
             </p>
@@ -226,11 +246,13 @@ function Process() {
               Quick Links
             </div>
             <ul className="mt-4 space-y-2 text-sm text-gray-300">
-              {["Home", "About Us", "Services", "Universities", "Resources", "Success Stories", "Contact"].map((l) => (
-                <li key={l}>
-                  <a href="#" className="hover:text-[#f0b429]">{l}</a>
-                </li>
-              ))}
+              <li><a href="/" className="hover:text-[#f0b429]">Home</a></li>
+              <li><a href="/about" className="hover:text-[#f0b429]">About Us</a></li>
+              <li><a href="/services" className="hover:text-[#f0b429]">Services</a></li>
+              <li><a href="/universities" className="hover:text-[#f0b429]">Universities</a></li>
+              <li><a href="/resources" className="hover:text-[#f0b429]">Resources</a></li>
+              <li><a href="/success-stories" className="hover:text-[#f0b429]">Success Stories</a></li>
+              <li><a href="/contact" className="hover:text-[#f0b429]">Contact</a></li>
             </ul>
           </div>
 
