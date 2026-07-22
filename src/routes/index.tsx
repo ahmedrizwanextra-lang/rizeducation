@@ -34,13 +34,13 @@ function Home() {
             </div>
           </a>
           
-         <ul className="hidden gap-8 text-sm font-medium md:flex">
-  <li><Link to="/" className="text-gray-700 hover:text-[#1a2744]">Home</Link></li>
-  <li><Link to="/about" className="text-gray-700 hover:text-[#1a2744]">About</Link></li>
-  <li><Link to="/process" className="text-gray-700 hover:text-[#1a2744]">Framework</Link></li>
-  <li><Link to="/universities" className="text-gray-700 hover:text-[#1a2744]">Universities</Link></li>
-  <li><Link to="/contact" className="text-gray-700 hover:text-[#1a2744]">Contact</Link></li>
-</ul>
+          <ul className="hidden gap-8 text-sm font-medium md:flex">
+            <li><a href="/" className="text-[#1a2744] relative after:absolute after:bottom-[-6px] after:left-0 after:right-0 after:h-0.5 after:bg-[#1a2744]">Home</a></li>
+            <li><a href="/about" className="text-gray-700 hover:text-[#1a2744]">About</a></li>
+            <li><a href="/process" className="text-gray-700 hover:text-[#1a2744]">Framework</a></li>
+            <li><a href="/universities" className="text-gray-700 hover:text-[#1a2744]">Universities</a></li>
+            <li><a href="/contact" className="text-gray-700 hover:text-[#1a2744]">Contact</a></li>
+          </ul>
           
           <a href="/contact" className="hidden rounded-lg bg-[#f0b429] px-6 py-3 text-sm font-semibold text-[#1a2744] transition hover:bg-[#d9a020] md:inline-block">
             Book a Free Consultation
@@ -56,10 +56,8 @@ function Home() {
             <ul className="flex flex-col gap-2 px-6 py-4">
               <li><a href="/" className="block py-2">Home</a></li>
               <li><a href="/about" className="block py-2">About</a></li>
-              <li><a href="/services" className="block py-2">Services</a></li>
+              <li><a href="/process" className="block py-2">Framework</a></li>
               <li><a href="/universities" className="block py-2">Universities</a></li>
-              <li><a href="/resources" className="block py-2">Resources</a></li>
-              <li><a href="/success-stories" className="block py-2">Success Stories</a></li>
               <li><a href="/contact" className="block py-2">Contact</a></li>
             </ul>
           </div>
@@ -171,10 +169,10 @@ function Home() {
           <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-5">
             {[
               { name: "United Kingdom", desc: "Top universities. Diverse culture. Global exposure.", flag: "🇬🇧", img: "https://images.unsplash.com/photo-1529655683826-aba9b3e77383?w=400&h=250&fit=crop" },
-              { name: "Canada", desc: "Quality education. PGWP opportunities.", flag: "🇦", img: "https://images.unsplash.com/photo-1517935706615-2717063c2225?w=400&h=250&fit=crop" },
+              { name: "Canada", desc: "Quality education. PGWP opportunities.", flag: "🇨🇦", img: "https://images.unsplash.com/photo-1517935706615-2717063c2225?w=400&h=250&fit=crop" },
               { name: "Australia", desc: "World-class education. Great lifestyle.", flag: "🇺", img: "https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?w=400&h=250&fit=crop" },
-              { name: "United States", desc: "Endless opportunities. World-leading institutions.", flag: "🇸", img: "https://images.unsplash.com/photo-1485738422979-f5c462d49f04?w=400&h=250&fit=crop" },
-              { name: "Europe", desc: "Affordable education. Rich cultural experience.", flag: "🇪", img: "https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=400&h=250&fit=crop" },
+              { name: "United States", desc: "Endless opportunities. World-leading institutions.", flag: "🇺", img: "https://images.unsplash.com/photo-1485738422979-f5c462d49f04?w=400&h=250&fit=crop" },
+              { name: "Europe", desc: "Affordable education. Rich cultural experience.", flag: "🇪🇺", img: "https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=400&h=250&fit=crop" },
             ].map((dest) => (
               <div key={dest.name} className="overflow-hidden rounded-xl bg-white shadow-lg transition hover:-translate-y-1 hover:shadow-xl">
                 <div className="relative h-40">
