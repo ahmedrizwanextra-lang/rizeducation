@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -71,6 +72,8 @@ const counsellors = [
 ];
 
 function About() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
     <div className="min-h-screen bg-white font-sans text-[#1a2744]">
       <link
@@ -91,13 +94,13 @@ function About() {
             </div>
           </a>
 
-         <ul className="hidden gap-8 text-sm font-medium md:flex">
-  <li><Link to="/" className="text-gray-700 hover:text-[#1a2744]">Home</Link></li>
-  <li><Link to="/about" className="text-gray-700 hover:text-[#1a2744]">About</Link></li>
-  <li><Link to="/process" className="text-gray-700 hover:text-[#1a2744]">Framework</Link></li>
-  <li><Link to="/universities" className="text-gray-700 hover:text-[#1a2744]">Universities</Link></li>
-  <li><Link to="/contact" className="text-gray-700 hover:text-[#1a2744]">Contact</Link></li>
-</ul>
+          <ul className="hidden gap-8 text-sm font-medium md:flex">
+            <li><a href="/" className="text-gray-700 hover:text-[#1a2744]">Home</a></li>
+            <li><a href="/about" className="text-[#1a2744] relative after:absolute after:bottom-[-6px] after:left-0 after:right-0 after:h-0.5 after:bg-[#1a2744]">About</a></li>
+            <li><a href="/process" className="text-gray-700 hover:text-[#1a2744]">Framework</a></li>
+            <li><a href="/universities" className="text-gray-700 hover:text-[#1a2744]">Universities</a></li>
+            <li><a href="/contact" className="text-gray-700 hover:text-[#1a2744]">Contact</a></li>
+          </ul>
 
           <a
             href="/contact"
@@ -105,7 +108,23 @@ function About() {
           >
             Book a Free Consultation
           </a>
+
+          <button onClick={() => setMenuOpen(!menuOpen)} className="md:hidden">
+            <i className="fas fa-bars text-2xl"></i>
+          </button>
         </nav>
+
+        {menuOpen && (
+          <div className="border-t bg-white md:hidden">
+            <ul className="flex flex-col gap-2 px-6 py-4">
+              <li><a href="/" className="block py-2">Home</a></li>
+              <li><a href="/about" className="block py-2">About</a></li>
+              <li><a href="/process" className="block py-2">Framework</a></li>
+              <li><a href="/universities" className="block py-2">Universities</a></li>
+              <li><a href="/contact" className="block py-2">Contact</a></li>
+            </ul>
+          </div>
+        )}
       </header>
 
       {/* HERO / ABOUT US */}
