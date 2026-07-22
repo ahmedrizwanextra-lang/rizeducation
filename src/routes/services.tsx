@@ -54,39 +54,6 @@ const trustPoints = [
   { icon: "chart-simple", title: "Proven Track Record of Success" },
 ];
 
-const processSteps = [
-  {
-    n: 1,
-    icon: "comment-dots",
-    title: "Understand",
-    desc: "We learn about your goals, interests and academic background.",
-  },
-  {
-    n: 2,
-    icon: "magnifying-glass",
-    title: "Explore",
-    desc: "We research and shortlist the best options tailored to your profile.",
-  },
-  {
-    n: 3,
-    icon: "file-invoice",
-    title: "Plan",
-    desc: "We build a personalized roadmap and application strategy.",
-  },
-  {
-    n: 4,
-    icon: "paper-plane",
-    title: "Apply",
-    desc: "We assist you through the entire application and visa process.",
-  },
-  {
-    n: 5,
-    icon: "medal",
-    title: "Achieve",
-    desc: "We support you until you reach your dream university and beyond.",
-  },
-];
-
 function Services() {
   return (
     <div className="min-h-screen bg-white font-sans text-[#1a2744]">
@@ -113,6 +80,7 @@ function Services() {
               { name: "Home", href: "/" },
               { name: "About", href: "/about" },
               { name: "Services", href: "/services" },
+              { name: "Process", href: "/process" },
               { name: "Universities", href: "/universities" },
               { name: "Resources", href: "/resources" },
               { name: "Success Stories", href: "/success-stories" },
@@ -223,32 +191,6 @@ function Services() {
               <div key={t.title} className="flex flex-col items-center text-center">
                 <i className={`fas fa-${t.icon} mb-4 text-4xl text-[#f0b429]`}></i>
                 <div className="text-sm font-semibold leading-snug">{t.title}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* OUR PROCESS */}
-      <section className="bg-white px-6 py-20 text-center">
-        <div className="mx-auto max-w-7xl">
-          <h2 className="text-3xl font-extrabold text-[#1a2744]">Our Process</h2>
-          <div className="mx-auto my-4 h-1 w-12 rounded bg-[#f0b429]"></div>
-
-          <div className="relative mt-16 grid gap-10 md:grid-cols-5">
-            {/* Dashed connecting line */}
-            <div className="absolute top-6 left-0 right-0 hidden h-[2px] border-t-2 border-dashed border-gray-300 md:block"></div>
-
-            {processSteps.map((s) => (
-              <div key={s.n} className="relative flex flex-col items-center">
-                <div className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full bg-[#1a2744] text-sm font-bold text-white">
-                  {s.n}
-                </div>
-                <div className="mt-6 flex h-14 w-14 items-center justify-center rounded-full bg-gray-100">
-                  <i className={`fas fa-${s.icon} text-2xl text-[#1a2744]`}></i>
-                </div>
-                <h3 className="mt-4 text-lg font-bold text-[#1a2744]">{s.title}</h3>
-                <p className="mt-2 text-sm text-gray-600 leading-relaxed">{s.desc}</p>
               </div>
             ))}
           </div>
