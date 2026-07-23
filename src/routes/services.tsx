@@ -1,4 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useState, useEffect } from "react";
+import { supabase } from "../supabaseClient";
 
 export const Route = createFileRoute("/services")({
   head: () => ({
