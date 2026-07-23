@@ -15,7 +15,7 @@ const processSteps = [
   { n: 4, icon: "paper-plane", title: "Apply", desc: "We assist you through the entire application and visa process." },
   { n: 5, icon: "medal", title: "Achieve", desc: "We support you until you reach your dream university and beyond." },
 ];
-
+<button onClick={() => setModalOpen(true)} className="hidden rounded-lg bg-[#f0b429]...">Start Application Process</button>
 function Framework() {
   const [menuOpen, setMenuOpen] = useState(false);
 
