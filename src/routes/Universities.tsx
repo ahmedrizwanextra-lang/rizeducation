@@ -32,7 +32,7 @@ const stats = [
   { icon: "star", value: "98%", label: "Success Rate" },
   { icon: "shield-check", value: "100%", label: "Confidential & Trusted" },
 ];
-
+<button onClick={() => setModalOpen(true)} className="hidden rounded-lg bg-[#f0b429]...">Start Application Process</button>
 function Universities() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrollIndex, setScrollIndex] = useState(0);
