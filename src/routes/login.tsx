@@ -8,7 +8,7 @@ export const Route = createFileRoute("/login")({
   head: () => ({ meta: [{ title: "Login — Pathway Education Counselling" }] }),
   component: Login,
 });
-
+<button onClick={() => setModalOpen(true)} className="hidden rounded-lg bg-[#f0b429]...">Start Application Process</button>
 function Login() {
   const [isLogin, setIsLogin] = useState(true);
   const [email, setEmail] = useState("");
