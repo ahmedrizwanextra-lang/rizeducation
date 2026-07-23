@@ -8,7 +8,6 @@ export const Route = createFileRoute("/qualification")({
 
 function Qualification() {
   const [step, setStep] = useState(1);
-  const [fade, setFade] = useState(true);
   const [degree, setDegree] = useState("");
   const [education, setEducation] = useState("");
   const [countries, setCountries] = useState<string[]>([]);
@@ -19,21 +18,15 @@ function Qualification() {
   const toggleCountry = (c: string) => setCountries((prev) => prev.includes(c) ? prev.filter((x) => x !== c) : [...prev, c]);
 
   const nextStep = () => {
-    setFade(false);
-    setTimeout(() => {
-      if (step < 5) setStep(step + 1);
-      else {
-        localStorage.setItem("qualificationData", JSON.stringify({ degree, education, countries, budget, currency, institution }));
-        window.location.href = "/signup";
-      }
-      setFade(true);
-    }, 200);
+    if (step < 5) {
+      setStep(step + 1);
+    } else {
+      localStorage.setItem("qualificationData", JSON.stringify({ degree, education, countries, budget, currency, institution }));
+      window.location.href = "/signup";
+    }
   };
 
-  const prevStep = () => {
-    setFade(false);
-    setTimeout(() => { setStep(step - 1); setFade(true); }, 200);
-  };
+  const prevStep = () => setStep(step - 1);
 
   const canProceed = () => {
     if (step === 1) return degree !== "";
@@ -50,7 +43,7 @@ function Qualification() {
       <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-      <style>{`*:not(.fa):not(.fas):not(.far):not(.fab):not(.fal):not(.fad) { font-family: 'Montserrat', sans-serif !important; }`}</style>
+      <style>{`*:not(.fa):not(.fas):not(.far):not(.fab):not(.fal):not(.fad) { font-family: 'Montserrat', sans-serif !important; } select, option, button, input, textarea { font-family: 'Montserrat', sans-serif !important; }`}</style>
 
       <header className="bg-white shadow-sm">
         <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
@@ -75,7 +68,7 @@ function Qualification() {
         </div>
 
         <div className="rounded-2xl bg-white p-8 shadow-xl md:p-12">
-          <div className={`transition-all duration-300 ${fade ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"}`}>
+          <div key={step} className="animate-in fade-in slide-in-from-bottom-2 duration-500">
             {step === 1 && (
               <div>
                 <h2 className="text-2xl font-bold text-[#1a2744] md:text-3xl">What degree are you looking for?</h2>
