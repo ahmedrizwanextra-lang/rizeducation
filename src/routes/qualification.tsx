@@ -1,22 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { useState, useEffect } from "react";
-import { supabase } from "../supabaseClient";
 
 export const Route = createFileRoute("/qualification")({
-  head: () => ({
-    meta: [
-      { title: "Start Application — Pathway Education Counselling" },
-      { name: "description", content: "Complete our 5-step qualification process to start your application." },
-    ],
-  }),
+  head: () => ({ meta: [{ title: "Start Application — Pathway Education Counselling" }] }),
   component: Qualification,
 });
-<button onClick={() => setModalOpen(true)} className="hidden rounded-lg bg-[#f0b429]...">Start Application Process</button>
+
 function Qualification() {
   const [step, setStep] = useState(1);
   const [fade, setFade] = useState(true);
-
   const [degree, setDegree] = useState("");
   const [education, setEducation] = useState("");
   const [countries, setCountries] = useState<string[]>([]);
@@ -24,18 +16,14 @@ function Qualification() {
   const [currency, setCurrency] = useState<"USD" | "PKR">("USD");
   const [institution, setInstitution] = useState("");
 
-  const toggleCountry = (c: string) => {
-    setCountries((prev) => prev.includes(c) ? prev.filter((x) => x !== c) : [...prev, c]);
-  };
+  const toggleCountry = (c: string) => setCountries((prev) => prev.includes(c) ? prev.filter((x) => x !== c) : [...prev, c]);
 
   const nextStep = () => {
     setFade(false);
     setTimeout(() => {
-      if (step < 5) {
-        setStep(step + 1);
-      } else {
-        const data = { degree, education, countries, budget, currency, institution };
-        localStorage.setItem("qualificationData", JSON.stringify(data));
+      if (step < 5) setStep(step + 1);
+      else {
+        localStorage.setItem("qualificationData", JSON.stringify({ degree, education, countries, budget, currency, institution }));
         window.location.href = "/signup";
       }
       setFade(true);
@@ -64,7 +52,6 @@ function Qualification() {
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
       <style>{`* { font-family: 'Montserrat', sans-serif !important; }`}</style>
 
-      {/* Header */}
       <header className="bg-white shadow-sm">
         <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
           <a href="/" className="flex items-center gap-2">
@@ -75,7 +62,6 @@ function Qualification() {
         </nav>
       </header>
 
-      {/* Main Content */}
       <div className="mx-auto max-w-3xl px-6 py-16">
         <div className="mb-8 text-center">
           <div className="text-sm font-bold uppercase tracking-widest text-[#f0b429]">Application Process</div>
@@ -83,18 +69,11 @@ function Qualification() {
           <div className="mx-auto my-5 h-1 w-12 rounded bg-[#f0b429]"></div>
         </div>
 
-        {/* Progress Bar */}
         <div className="mb-10">
-          <div className="h-2 w-full overflow-hidden rounded-full bg-gray-200">
-            <div className="h-full bg-[#f0b429] transition-all duration-500" style={{ width: `${(step / 5) * 100}%` }}></div>
-          </div>
-          <div className="mt-3 flex justify-between text-sm font-semibold text-gray-500">
-            <span>Step {step}</span>
-            <span>of 5</span>
-          </div>
+          <div className="h-2 w-full overflow-hidden rounded-full bg-gray-200"><div className="h-full bg-[#f0b429] transition-all duration-500" style={{ width: `${(step / 5) * 100}%` }}></div></div>
+          <div className="mt-3 flex justify-between text-sm font-semibold text-gray-500"><span>Step {step}</span><span>of 5</span></div>
         </div>
 
-        {/* Question Card */}
         <div className="rounded-2xl bg-white p-8 shadow-xl md:p-12">
           <div className={`transition-all duration-300 ${fade ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"}`}>
             {step === 1 && (
@@ -109,7 +88,6 @@ function Qualification() {
                 </select>
               </div>
             )}
-
             {step === 2 && (
               <div>
                 <h2 className="text-2xl font-bold text-[#1a2744] md:text-3xl">What is your current level of education?</h2>
@@ -125,7 +103,6 @@ function Qualification() {
                 </select>
               </div>
             )}
-
             {step === 3 && (
               <div>
                 <h2 className="text-2xl font-bold text-[#1a2744] md:text-3xl">Which country do you want to go to?</h2>
@@ -140,7 +117,6 @@ function Qualification() {
                 </div>
               </div>
             )}
-
             {step === 4 && (
               <div>
                 <h2 className="text-2xl font-bold text-[#1a2744] md:text-3xl">What is your budget?</h2>
@@ -156,7 +132,6 @@ function Qualification() {
                 </div>
               </div>
             )}
-
             {step === 5 && (
               <div>
                 <h2 className="text-2xl font-bold text-[#1a2744] md:text-3xl">What is your current educational institution?</h2>
@@ -167,7 +142,6 @@ function Qualification() {
             )}
           </div>
 
-          {/* Navigation Buttons */}
           <div className="mt-10 flex justify-between">
             <button onClick={prevStep} disabled={step === 1} className="rounded-lg border-2 border-gray-200 px-6 py-3 text-sm font-semibold text-gray-600 transition hover:border-[#1a2744] hover:text-[#1a2744] disabled:cursor-not-allowed disabled:opacity-40"><i className="fas fa-arrow-left mr-2"></i> Back</button>
             <button onClick={nextStep} disabled={!canProceed()} className="rounded-lg bg-[#1a2744] px-8 py-3 text-sm font-semibold text-white transition hover:bg-[#141e36] disabled:cursor-not-allowed disabled:opacity-40">{step === 5 ? "Continue to Account" : "Next"} <i className="fas fa-arrow-right ml-2"></i></button>
