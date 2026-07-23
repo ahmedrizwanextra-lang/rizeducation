@@ -12,7 +12,7 @@ export const Route = createFileRoute("/")({
   }),
   component: Home,
 });
-
+<button onClick={() => setModalOpen(true)} className="hidden rounded-lg bg-[#f0b429]...">Start Application Process</button>
 function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
 
