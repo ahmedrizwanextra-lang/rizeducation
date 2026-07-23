@@ -97,10 +97,10 @@ function Framework() {
           <div className="relative mt-16 grid gap-10 md:grid-cols-5">
             <div className="absolute top-6 left-0 right-0 hidden h-[2px] border-t-2 border-dashed border-gray-300 md:block"></div>
             {processSteps.map((s) => (
-              <div key={s.n} className="relative flex flex-col items-center">
-                <div className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full bg-[#1a2744] text-sm font-bold text-white shadow-lg">{s.n}</div>
-                <div className="mt-6 flex h-16 w-16 items-center justify-center rounded-full bg-gray-100 shadow-md"><i className={`fas fa-${s.icon} text-3xl text-[#1a2744]`}></i></div>
-                <h3 className="mt-4 text-xl font-bold text-[#1a2744]">{s.title}</h3>
+              <div key={s.n} className="group relative flex flex-col items-center transition-transform duration-300 hover:-translate-y-2">
+                <div className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full bg-[#1a2744] text-sm font-bold text-white shadow-lg ring-4 ring-transparent transition-all duration-300 group-hover:ring-[#f0b429]/40">{s.n}</div>
+                <div className="mt-6 flex h-16 w-16 items-center justify-center rounded-full bg-gray-100 shadow-md transition-colors duration-300 group-hover:bg-[#1a2744]"><i className={`fas fa-${s.icon} text-3xl text-[#1a2744] transition-colors duration-300 group-hover:text-[#f0b429]`}></i></div>
+                <h3 className="mt-4 text-xl font-bold text-[#1a2744] transition-colors duration-300 group-hover:text-[#f0b429]">{s.title}</h3>
                 <p className="mt-3 text-sm text-gray-600 leading-relaxed text-center">{s.desc}</p>
               </div>
             ))}
