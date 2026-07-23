@@ -55,7 +55,7 @@ const trustPoints = [
   { icon: "shield-halved", title: "Transparent Process, 100% Confidential" },
   { icon: "chart-simple", title: "Proven Track Record of Success" },
 ];
-
+<button onClick={() => setModalOpen(true)} className="hidden rounded-lg bg-[#f0b429]...">Start Application Process</button>
 function Services() {
   return (
     <div className="min-h-screen bg-white font-sans text-[#1a2744]">
