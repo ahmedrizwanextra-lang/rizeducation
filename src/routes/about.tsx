@@ -183,7 +183,7 @@ function About() {
             <div className="flex h-20 w-20 items-center justify-center rounded-full bg-white"><i className="fas fa-graduation-cap text-4xl text-[#1a2744]"></i></div>
             <div><h2 className="text-3xl font-extrabold">Let's build your future, together.</h2><div className="my-3 h-1 w-12 rounded bg-[#f0b429]"></div><p className="max-w-md text-gray-300">Book a free consultation and take the first step towards your dream university.</p></div>
           </div>
-          <a href="/contact" className="inline-flex items-center gap-2 rounded-lg bg-[#f0b429] px-8 py-4 text-base font-bold text-[#1a2744] transition hover:bg-[#d9a020]">Book a Free Consultation <i className="fas fa-arrow-right"></i></a>
+          <a href="/contact" className="inline-flex items-center gap-2 rounded-lg bg-[#f0b429] px-8 py-4 text-base font-bold text-[#1a2744] transition hover:bg-[#d9a020]"><i className="fas fa-calendar"></i> Book a Free Consultation <i className="fas fa-arrow-right"></i></a>
         </div>
       </section>
 
