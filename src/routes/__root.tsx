@@ -1,5 +1,7 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {
+  import { useState, useEffect } from "react";
+import { supabase } from "../supabaseClient";
   Outlet,
   Link,
   createRootRouteWithContext,
