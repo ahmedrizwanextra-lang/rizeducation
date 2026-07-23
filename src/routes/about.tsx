@@ -28,7 +28,7 @@ const counsellors = [
   { name: "Zara Khan", role: "Counsellor", desc: "Passionate about helping students find the right path. Specializes in US admissions & scholarships.", img: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=300&h=300&fit=crop&crop=face" },
   { name: "Usman Ahmed", role: "Visa & Documentation Expert", desc: "Ensures a smooth visa process and provides end-to-end documentation support.", img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&h=300&fit=crop&crop=face" },
 ];
-
+<button onClick={() => setModalOpen(true)} className="hidden rounded-lg bg-[#f0b429]...">Start Application Process</button>
 function About() {
   const [menuOpen, setMenuOpen] = useState(false);
 
