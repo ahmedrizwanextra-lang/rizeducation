@@ -1,7 +1,5 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {
-  import { useState, useEffect } from "react";
-import { supabase } from "../supabaseClient";
   Outlet,
   Link,
   createRootRouteWithContext,
@@ -9,24 +7,24 @@ import { supabase } from "../supabaseClient";
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
-import { useEffect, type ReactNode } from "react";
+import { type ReactNode } from "react";
 
+// Note: If you don't have a styles.css file, you can remove this line
 import appCss from "../styles.css?url";
-import { reportLovableError } from "../lib/lovable-error-reporting";
-<button onClick={() => setModalOpen(true)} className="hidden rounded-lg bg-[#f0b429]...">Start Application Process</button>
+
 function NotFoundComponent() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
+    <div className="flex min-h-screen items-center justify-center bg-white px-4">
       <div className="max-w-md text-center">
-        <h1 className="text-7xl font-bold text-foreground">404</h1>
-        <h2 className="mt-4 text-xl font-semibold text-foreground">Page not found</h2>
-        <p className="mt-2 text-sm text-muted-foreground">
+        <h1 className="text-7xl font-bold text-[#1a2744]">404</h1>
+        <h2 className="mt-4 text-xl font-semibold text-[#1a2744]">Page not found</h2>
+        <p className="mt-2 text-sm text-gray-600">
           The page you're looking for doesn't exist or has been moved.
         </p>
         <div className="mt-6">
           <Link
             to="/"
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+            className="inline-flex items-center justify-center rounded-md bg-[#1a2744] px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-[#141e36]"
           >
             Go home
           </Link>
@@ -39,17 +37,14 @@ function NotFoundComponent() {
 function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   console.error(error);
   const router = useRouter();
-  useEffect(() => {
-    reportLovableError(error, { boundary: "tanstack_root_error_component" });
-  }, [error]);
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
+    <div className="flex min-h-screen items-center justify-center bg-white px-4">
       <div className="max-w-md text-center">
-        <h1 className="text-xl font-semibold tracking-tight text-foreground">
+        <h1 className="text-xl font-semibold tracking-tight text-[#1a2744]">
           This page didn't load
         </h1>
-        <p className="mt-2 text-sm text-muted-foreground">
+        <p className="mt-2 text-sm text-gray-600">
           Something went wrong on our end. You can try refreshing or head back home.
         </p>
         <div className="mt-6 flex flex-wrap justify-center gap-2">
@@ -58,13 +53,13 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
               router.invalidate();
               reset();
             }}
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+            className="inline-flex items-center justify-center rounded-md bg-[#1a2744] px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-[#141e36]"
           >
             Try again
           </button>
           <a
             href="/"
-            className="inline-flex items-center justify-center rounded-md border border-input bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-accent"
+            className="inline-flex items-center justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-[#1a2744] transition-colors hover:bg-gray-50"
           >
             Go home
           </a>
@@ -79,25 +74,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Riz Education Consultants — Undergrad Admissions to USA, UK, Canada & Australia" },
+      { title: "Pathway Education Counselling — Study Abroad Experts" },
       {
         name: "description",
-        content:
-          "Undergraduate admissions consultancy for A-level students. Get into top universities in the USA, UK, Canada and Australia with Riz Education Consultants.",
+        content: "Expert counselling for O/A Level students to help you study at top universities worldwide.",
       },
-      { property: "og:title", content: "Riz Education Consultants — Undergrad Admissions to USA, UK, Canada & Australia" },
-      {
-        property: "og:description",
-        content: "From A-levels to your dream campus abroad — expert admissions guidance.",
-      },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Riz Education Consultants — Undergrad Admissions to USA, UK, Canada & Australia" },
-      { name: "description", content: "Riz Education Consultants helps A-level students land undergraduate offers from top universities in the USA, UK, Canada and Australia. Expert guidance from application to visa." },
-      { property: "og:description", content: "Riz Education Consultants helps A-level students land undergraduate offers from top universities in the USA, UK, Canada and Australia. Expert guidance from application to visa." },
-      { name: "twitter:description", content: "Riz Education Consultants helps A-level students land undergraduate offers from top universities in the USA, UK, Canada and Australia. Expert guidance from application to visa." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/0c5bdf20-2d3e-4215-a2e4-b79c20b0b7eb/id-preview-c3c1bdf2--cab0c5da-22b0-49a3-b957-10eba0611546.lovable.app-1783392917929.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/0c5bdf20-2d3e-4215-a2e4-b79c20b0b7eb/id-preview-c3c1bdf2--cab0c5da-22b0-49a3-b957-10eba0611546.lovable.app-1783392917929.png" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
@@ -105,37 +86,20 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@400;500;600;700&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap",
       },
-      { rel: "icon", type: "image/png", href: "/favicon.png" },
     ],
   }),
-  shellComponent: RootShell,
   component: RootComponent,
   notFoundComponent: NotFoundComponent,
   errorComponent: ErrorComponent,
 });
-
-function RootShell({ children }: { children: ReactNode }) {
-  return (
-    <html lang="en">
-      <head>
-        <HeadContent />
-      </head>
-      <body>
-        {children}
-        <Scripts />
-      </body>
-    </html>
-  );
-}
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
       <Outlet />
     </QueryClientProvider>
   );
