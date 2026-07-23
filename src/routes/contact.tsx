@@ -15,7 +15,7 @@ export const Route = createFileRoute("/contact")({
   }),
   component: Contact,
 });
-
+<button onClick={() => setModalOpen(true)} className="hidden rounded-lg bg-[#f0b429]...">Start Application Process</button>
 function Contact() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [formData, setFormData] = useState({ name: "", email: "", subject: "", message: "" });
