@@ -7,10 +7,12 @@ import {
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
-import { type ReactNode } from "react";
+import { useEffect, type ReactNode } from "react";
 
-// Note: If you don't have a styles.css file, you can remove this line
 import appCss from "../styles.css?url";
+
+// Safely import this, or comment it out if it causes issues
+// import { reportLovableError } from "../lib/lovable-error-reporting";
 
 function NotFoundComponent() {
   return (
@@ -37,6 +39,10 @@ function NotFoundComponent() {
 function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   console.error(error);
   const router = useRouter();
+  
+  // useEffect(() => {
+  //   reportLovableError?.(error, { boundary: "tanstack_root_error_component" });
+  // }, [error]);
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-white px-4">
@@ -90,10 +96,25 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
     ],
   }),
+  shellComponent: RootShell, // <-- THIS IS REQUIRED FOR YOUR TEMPLATE
   component: RootComponent,
   notFoundComponent: NotFoundComponent,
   errorComponent: ErrorComponent,
 });
+
+function RootShell({ children }: { children: ReactNode }) {
+  return (
+    <html lang="en">
+      <head>
+        <HeadContent />
+      </head>
+      <body>
+        {children}
+        <Scripts />
+      </body>
+    </html>
+  );
+}
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
@@ -103,4 +124,4 @@ function RootComponent() {
       <Outlet />
     </QueryClientProvider>
   );
-}
+} 
