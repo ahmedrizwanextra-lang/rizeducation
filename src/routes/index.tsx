@@ -1,5 +1,4 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
 import { useState, useEffect } from "react";
 import { supabase } from "../supabaseClient";
 
@@ -12,7 +11,51 @@ export const Route = createFileRoute("/")({
   }),
   component: Home,
 });
-<button onClick={() => setModalOpen(true)} className="hidden rounded-lg bg-[#f0b429]...">Start Application Process</button>
+
+function ProfileButton() {
+  const [user, setUser] = useState<any>(null);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+
+  useEffect(() => {
+    checkUser();
+  }, []);
+
+  const checkUser = async () => {
+    const { data: { user } } = await supabase.auth.getUser();
+    setUser(user);
+  };
+
+  if (!user) {
+    return (
+      <a href="/login" className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 text-[#1a2744] transition hover:bg-gray-200" title="Login / Sign Up">
+        <i className="fas fa-user"></i>
+      </a>
+    );
+  }
+
+  return (
+    <div className="relative">
+      <button onClick={() => setDropdownOpen(!dropdownOpen)} className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-full bg-[#1a2744] text-white transition hover:bg-[#141e36]">
+        {user.user_metadata?.avatar_url ? (
+          <img src={user.user_metadata.avatar_url} alt="Profile" className="h-full w-full object-cover" />
+        ) : (
+          <span className="text-sm font-bold">{user.email?.charAt(0).toUpperCase()}</span>
+        )}
+      </button>
+      {dropdownOpen && (
+        <div className="absolute right-0 mt-2 w-48 rounded-lg bg-white py-2 shadow-xl z-50">
+          <a href="/profile" onClick={() => setDropdownOpen(false)} className="block px-4 py-2 text-sm text-[#1a2744] hover:bg-gray-50">
+            <i className="fas fa-user mr-2"></i> My Profile
+          </a>
+          <button onClick={async () => { await supabase.auth.signOut(); window.location.href = "/"; }} className="block w-full px-4 py-2 text-left text-sm text-red-600 hover:bg-gray-50">
+            <i className="fas fa-sign-out-alt mr-2"></i> Logout
+          </button>
+        </div>
+      )}
+    </div>
+  );
+}
+
 function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -38,6 +81,7 @@ function Home() {
             <li><a href="/contact" className="text-gray-700 hover:text-[#1a2744]">Contact</a></li>
           </ul>
           <a href="/qualification" className="hidden rounded-lg bg-[#f0b429] px-6 py-3 text-sm font-semibold text-[#1a2744] transition hover:bg-[#d9a020] md:inline-block">Start Application Process</a>
+          <ProfileButton />
           <button onClick={() => setMenuOpen(!menuOpen)} className="md:hidden"><i className="fas fa-bars text-2xl"></i></button>
         </nav>
         {menuOpen && (
@@ -59,28 +103,14 @@ function Home() {
           <div className="flex flex-col justify-center">
             <h1 className="text-6xl font-black leading-tight text-[#1a2744] md:text-7xl">Your Future.<br />Our Guidance.</h1>
             <p className="mt-5 text-lg text-gray-600">Expert counselling for O/A Level students to help you study at top universities worldwide.</p>
-            
-            {/* UPDATED BUTTONS WITH ICONS AND HOVER EFFECTS */}
             <div className="mt-8 flex flex-wrap gap-4">
-              <a 
-                href="/qualification"
-                className="group inline-flex items-center gap-3 rounded-lg bg-[#1a2744] px-7 py-4 text-base font-semibold text-white shadow-md transition-all duration-300 hover:-translate-y-1 hover:bg-[#141e36] hover:shadow-xl"
-              >
-                <i className="fas fa-clipboard"></i>
-                Start Application Process 
-                <i className="fas fa-arrow-right transition-transform duration-300 group-hover:translate-x-1"></i>
+              <a href="/qualification" className="group inline-flex items-center gap-3 rounded-lg bg-[#1a2744] px-7 py-4 text-base font-semibold text-white shadow-md transition-all duration-300 hover:-translate-y-1 hover:bg-[#141e36] hover:shadow-xl">
+                <i className="fas fa-clipboard"></i> Start Application Process <i className="fas fa-arrow-right transition-transform duration-300 group-hover:translate-x-1"></i>
               </a>
-              
-              <a 
-                href="/universities" 
-                className="group inline-flex items-center gap-3 rounded-lg border-2 border-[#1a2744] bg-white px-7 py-4 text-base font-semibold text-[#1a2744] shadow-sm transition-all duration-300 hover:-translate-y-1 hover:bg-[#1a2744] hover:text-white hover:shadow-xl"
-              >
-                <i className="fas fa-compass"></i>
-                Explore Universities 
-                <i className="fas fa-arrow-right transition-transform duration-300 group-hover:translate-x-1"></i>
+              <a href="/universities" className="group inline-flex items-center gap-3 rounded-lg border-2 border-[#1a2744] bg-white px-7 py-4 text-base font-semibold text-[#1a2744] shadow-sm transition-all duration-300 hover:-translate-y-1 hover:bg-[#1a2744] hover:text-white hover:shadow-xl">
+                <i className="fas fa-compass"></i> Explore Universities <i className="fas fa-arrow-right transition-transform duration-300 group-hover:translate-x-1"></i>
               </a>
             </div>
-
             <div className="mt-10 flex gap-8">
               <div className="flex items-center gap-3"><div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gray-100"><i className="fas fa-user-friends text-[#1a2744]"></i></div><span className="text-sm font-semibold">Personalized<br />Guidance</span></div>
               <div className="flex items-center gap-3"><div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gray-100"><i className="fas fa-university text-[#1a2744]"></i></div><span className="text-sm font-semibold">Top University<br />Placements</span></div>
@@ -133,8 +163,8 @@ function Home() {
               { name: "United Kingdom", desc: "Top universities. Diverse culture.", flag: "🇬🇧", img: "https://images.unsplash.com/photo-1529655683826-aba9b3e77383?w=400&h=250&fit=crop" },
               { name: "Canada", desc: "Quality education. PGWP opportunities.", flag: "🇨🇦", img: "https://images.unsplash.com/photo-1517935706615-2717063c2225?w=400&h=250&fit=crop" },
               { name: "Australia", desc: "World-class education. Great lifestyle.", flag: "🇦🇺", img: "https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?w=400&h=250&fit=crop" },
-              { name: "United States", desc: "Endless opportunities.", flag: "🇺", img: "https://images.unsplash.com/photo-1485738422979-f5c462d49f04?w=400&h=250&fit=crop" },
-              { name: "Europe", desc: "Affordable education.", flag: "🇪🇺", img: "https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=400&h=250&fit=crop" },
+              { name: "United States", desc: "Endless opportunities.", flag: "🇺🇸", img: "https://images.unsplash.com/photo-1485738422979-f5c462d49f04?w=400&h=250&fit=crop" },
+              { name: "Europe", desc: "Affordable education.", flag: "🇺", img: "https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=400&h=250&fit=crop" },
             ].map((d) => (
               <div key={d.name} className="overflow-hidden rounded-xl bg-white shadow-lg transition hover:-translate-y-1 hover:shadow-xl">
                 <div className="relative h-40"><img src={d.img} alt={d.name} className="h-full w-full object-cover" /><div className="absolute -bottom-4 left-4 flex h-9 w-9 items-center justify-center rounded-full border-2 border-white bg-white text-xl shadow-lg">{d.flag}</div></div>
