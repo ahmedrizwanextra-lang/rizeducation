@@ -10,7 +10,7 @@ export const Route = createFileRoute("/profile")({
   }),
   component: Profile,
 });
-
+<button onClick={() => setModalOpen(true)} className="hidden rounded-lg bg-[#f0b429]...">Start Application Process</button>
 function Profile() {
   const [user, setUser] = useState<any>(null);
   const [application, setApplication] = useState<any>(null);
