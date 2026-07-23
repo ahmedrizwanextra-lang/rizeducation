@@ -1,5 +1,4 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
 import { useState, useEffect } from "react";
 import { supabase } from "../supabaseClient";
 
@@ -8,21 +7,47 @@ export const Route = createFileRoute("/universities")({
   component: Universities,
 });
 
+function ProfileButton() {
+  const [user, setUser] = useState<any>(null);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  useEffect(() => { checkUser(); }, []);
+  const checkUser = async () => {
+    const { data: { user } } = await supabase.auth.getUser();
+    setUser(user);
+  };
+  if (!user) {
+    return <a href="/login" className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 text-[#1a2744] transition hover:bg-gray-200"><i className="fas fa-user"></i></a>;
+  }
+  return (
+    <div className="relative">
+      <button onClick={() => setDropdownOpen(!dropdownOpen)} className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-full bg-[#1a2744] text-white transition hover:bg-[#141e36]">
+        {user.user_metadata?.avatar_url ? <img src={user.user_metadata.avatar_url} alt="Profile" className="h-full w-full object-cover" /> : <span className="text-sm font-bold">{user.email?.charAt(0).toUpperCase()}</span>}
+      </button>
+      {dropdownOpen && (
+        <div className="absolute right-0 mt-2 w-48 rounded-lg bg-white py-2 shadow-xl z-50">
+          <a href="/profile" onClick={() => setDropdownOpen(false)} className="block px-4 py-2 text-sm text-[#1a2744] hover:bg-gray-50"><i className="fas fa-user mr-2"></i> My Profile</a>
+          <button onClick={async () => { await supabase.auth.signOut(); window.location.href = "/"; }} className="block w-full px-4 py-2 text-left text-sm text-red-600 hover:bg-gray-50"><i className="fas fa-sign-out-alt mr-2"></i> Logout</button>
+        </div>
+      )}
+    </div>
+  );
+}
+
 const universities = [
   { name: "University of Toronto", country: "Canada", flag: "🇨🇦", ranking: 21, img: "https://images.unsplash.com/photo-1562774053-701939374585?w=400&h=250&fit=crop" },
   { name: "University of British Columbia", country: "Canada", flag: "🇨🇦", ranking: 34, img: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=400&h=250&fit=crop" },
-  { name: "University of Oxford", country: "UK", flag: "🇧", ranking: 3, img: "https://images.unsplash.com/photo-1548504769-900b70ed122e?w=400&h=250&fit=crop" },
-  { name: "Stanford University", country: "USA", flag: "🇺", ranking: 5, img: "https://images.unsplash.com/photo-1562774053-701939374585?w=400&h=250&fit=crop" },
-  { name: "Massachusetts Institute of Technology", country: "USA", flag: "🇺🇸", ranking: 1, img: "https://images.unsplash.com/photo-1564981797816-1043664bf78d?w=400&h=250&fit=crop" },
-  { name: "University of Melbourne", country: "Australia", flag: "🇦🇺", ranking: 14, img: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=400&h=250&fit=crop" },
+  { name: "University of Oxford", country: "UK", flag: "🇬🇧", ranking: 3, img: "https://images.unsplash.com/photo-1548504769-900b70ed122e?w=400&h=250&fit=crop" },
+  { name: "Stanford University", country: "USA", flag: "🇺🇸", ranking: 5, img: "https://images.unsplash.com/photo-1562774053-701939374585?w=400&h=250&fit=crop" },
+  { name: "Massachusetts Institute of Technology", country: "USA", flag: "🇺", ranking: 1, img: "https://images.unsplash.com/photo-1564981797816-1043664bf78d?w=400&h=250&fit=crop" },
+  { name: "University of Melbourne", country: "Australia", flag: "🇦", ranking: 14, img: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=400&h=250&fit=crop" },
   { name: "National University of Singapore", country: "Singapore", flag: "🇸🇬", ranking: 8, img: "https://images.unsplash.com/photo-1562774053-701939374585?w=400&h=250&fit=crop" },
 ];
 
 const countries = [
   { name: "Canada", flag: "🇨🇦", desc: "Top universities. Quality education. Bright future.", img: "https://images.unsplash.com/photo-1517935706615-2717063c2225?w=600&h=400&fit=crop" },
   { name: "United Kingdom", flag: "🇬🇧", desc: "World-renowned institutions. Global recognition. Endless possibilities.", img: "https://images.unsplash.com/photo-1529655683826-aba9b3e77383?w=600&h=400&fit=crop" },
-  { name: "United States", flag: "🇺🇸", desc: "Innovation. Leadership. Top-ranked universities. Limitless potential.", img: "https://images.unsplash.com/photo-1485738422979-f5c462d49f04?w=600&h=400&fit=crop" },
-  { name: "Australia", flag: "🇦", desc: "World-class education. Vibrant lifestyle. Global exposure.", img: "https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?w=600&h=400&fit=crop" },
+  { name: "United States", flag: "🇺", desc: "Innovation. Leadership. Top-ranked universities. Limitless potential.", img: "https://images.unsplash.com/photo-1485738422979-f5c462d49f04?w=600&h=400&fit=crop" },
+  { name: "Australia", flag: "🇺", desc: "World-class education. Vibrant lifestyle. Global exposure.", img: "https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?w=600&h=400&fit=crop" },
 ];
 
 const stats = [
@@ -32,7 +57,7 @@ const stats = [
   { icon: "star", value: "98%", label: "Success Rate" },
   { icon: "shield-check", value: "100%", label: "Confidential & Trusted" },
 ];
-<button onClick={() => setModalOpen(true)} className="hidden rounded-lg bg-[#f0b429]...">Start Application Process</button>
+
 function Universities() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrollIndex, setScrollIndex] = useState(0);
@@ -61,7 +86,8 @@ function Universities() {
             <li><a href="/universities" className="text-[#1a2744] relative after:absolute after:bottom-[-6px] after:left-0 after:right-0 after:h-0.5 after:bg-[#1a2744]">Universities</a></li>
             <li><a href="/contact" className="text-gray-700 hover:text-[#1a2744]">Contact</a></li>
           </ul>
-          <a href="/contact" className="hidden rounded-lg bg-[#f0b429] px-6 py-3 text-sm font-semibold text-[#1a2744] transition hover:bg-[#d9a020] md:inline-block">Book a Free Consultation</a>
+          <a href="/qualification" className="hidden rounded-lg bg-[#f0b429] px-6 py-3 text-sm font-semibold text-[#1a2744] transition hover:bg-[#d9a020] md:inline-block">Start Application Process</a>
+          <ProfileButton />
           <button onClick={() => setMenuOpen(!menuOpen)} className="md:hidden"><i className="fas fa-bars text-2xl"></i></button>
         </nav>
         {menuOpen && (
@@ -72,6 +98,7 @@ function Universities() {
               <li><a href="/framework" className="block py-2">Framework</a></li>
               <li><a href="/universities" className="block py-2">Universities</a></li>
               <li><a href="/contact" className="block py-2">Contact</a></li>
+              <li><a href="/qualification" className="mt-2 block w-full rounded-lg bg-[#f0b429] px-6 py-3 text-center text-sm font-semibold text-[#1a2744]">Start Application Process</a></li>
             </ul>
           </div>
         )}
