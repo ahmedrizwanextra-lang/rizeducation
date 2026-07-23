@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
+import { supabase } from "../supabaseClient";
 
 export const Route = createFileRoute("/signup")({
   head: () => ({ meta: [{ title: "Create Account — Pathway Education Counselling" }] }),
@@ -13,6 +14,8 @@ function Signup() {
   const [password, setPassword] = useState("");
   const [profilePic, setProfilePic] = useState<string | null>(null);
   const [showSuccess, setShowSuccess] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const qualData = (() => {
     try { return JSON.parse(localStorage.getItem("qualificationData") || "null"); } catch { return null; }
@@ -27,7 +30,60 @@ function Signup() {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => { e.preventDefault(); setShowSuccess(true); };
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError("");
+    setLoading(true);
+
+    // 1. Create the user account with Supabase Auth
+    const { data: authData, error: authError } = await supabase.auth.signUp({
+      email,
+      password,
+      options: {
+        data: {
+          full_name: fullName,
+          phone: phone,
+          avatar_url: profilePic,
+        },
+      },
+    });
+
+    if (authError) {
+      setError(authError.message);
+      setLoading(false);
+      return;
+    }
+
+    // 2. Save qualification data to the applications table
+    if (qualData && authData.user) {
+      const { error: insertError } = await supabase.from("applications").insert([
+        {
+          degree: qualData.degree,
+          education: qualData.education,
+          countries: qualData.countries,
+          budget: qualData.budget,
+          currency: qualData.currency,
+          institution: qualData.institution,
+          full_name: fullName,
+          email: email,
+          phone: phone,
+          profile_pic: profilePic,
+          password: "hashed_by_supabase",
+          status: "pending",
+        },
+      ]);
+
+      if (insertError) {
+        setError("Account created but failed to save application: " + insertError.message);
+        setLoading(false);
+        return;
+      }
+    }
+
+    // 3. Show success
+    setShowSuccess(true);
+    setLoading(false);
+  };
 
   return (
     <div className="min-h-screen bg-gray-50 font-sans" style={{ fontFamily: "'Montserrat', sans-serif" }}>
@@ -58,7 +114,7 @@ function Signup() {
                 <div><div className="text-xs uppercase tracking-wider text-gray-400">Degree</div><div className="font-semibold">{qualData.degree}</div></div>
                 <div><div className="text-xs uppercase tracking-wider text-gray-400">Current Level</div><div className="font-semibold">{qualData.education}</div></div>
                 <div><div className="text-xs uppercase tracking-wider text-gray-400">Countries</div><div className="font-semibold">{qualData.countries?.join(", ")}</div></div>
-                <div><div className="text-xs uppercase tracking-wider text-gray-400">Budget</div><div className="font-semibold">{qualData.currency === "USD" ? "$" : "₨"}{qualData.budget?.toLocaleString()}</div></div>
+                <div><div className="text-xs uppercase tracking-wider text-gray-400">Budget</div><div className="font-semibold">{qualData.currency === "USD" ? "$" : ""}{qualData.budget?.toLocaleString()}</div></div>
                 <div><div className="text-xs uppercase tracking-wider text-gray-400">Institution</div><div className="font-semibold">{qualData.institution}</div></div>
               </div>
             </div>
@@ -69,6 +125,12 @@ function Signup() {
             <h1 className="text-3xl font-black text-[#1a2744]">Almost there!</h1>
             <p className="mt-2 text-gray-600">Fill in your details to complete your application.</p>
             <div className="my-5 h-1 w-12 rounded bg-[#f0b429]"></div>
+
+            {error && (
+              <div className="mb-4 rounded-lg bg-red-50 border border-red-200 p-4 text-sm text-red-600">
+                <i className="fas fa-exclamation-circle mr-2"></i>{error}
+              </div>
+            )}
 
             <form onSubmit={handleSubmit} className="space-y-5">
               <div>
@@ -99,7 +161,9 @@ function Signup() {
                 <label className="mb-2 block text-sm font-semibold text-[#1a2744]">Password <span className="text-red-500">*</span></label>
                 <input type="password" required value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Create a strong password" className="w-full rounded-lg border-2 border-gray-200 px-4 py-3 outline-none transition focus:border-[#1a2744]" />
               </div>
-              <button type="submit" className="w-full rounded-lg bg-[#f0b429] px-6 py-4 text-base font-bold text-[#1a2744] transition hover:bg-[#d9a020]">Create Account <i className="fas fa-arrow-right ml-2"></i></button>
+              <button type="submit" disabled={loading} className="w-full rounded-lg bg-[#f0b429] px-6 py-4 text-base font-bold text-[#1a2744] transition hover:bg-[#d9a020] disabled:opacity-50">
+                {loading ? "Creating Account..." : "Create Account"} <i className="fas fa-arrow-right ml-2"></i>
+              </button>
             </form>
           </div>
         </div>
