@@ -12,7 +12,7 @@ export const Route = createFileRoute("/qualification")({
   }),
   component: Qualification,
 });
-
+<button onClick={() => setModalOpen(true)} className="hidden rounded-lg bg-[#f0b429]...">Start Application Process</button>
 function Qualification() {
   const [step, setStep] = useState(1);
   const [fade, setFade] = useState(true);
