@@ -102,20 +102,22 @@ function Home() {
             <h1 className="text-6xl font-black leading-tight text-[#1a2744] md:text-7xl">Your Future.<br />Our Guidance.</h1>
             <p className="mt-5 text-lg text-gray-600">Expert counselling for O/A Level students to help you study at top universities worldwide.</p>
             
-            {/* UPDATED BUTTONS WITH HOVER EFFECTS */}
+            {/* UPDATED BUTTONS WITH ICONS */}
             <div className="mt-8 flex flex-wrap gap-4">
               <button 
                 onClick={() => setModalOpen(true)} 
-                className="group inline-flex items-center gap-2 rounded-lg bg-[#1a2744] px-7 py-4 text-base font-semibold text-white shadow-md transition-all duration-300 hover:-translate-y-1 hover:bg-[#141e36] hover:shadow-xl"
+                className="group inline-flex items-center gap-3 rounded-lg bg-[#1a2744] px-7 py-4 text-base font-semibold text-white shadow-md transition-all duration-300 hover:-translate-y-1 hover:bg-[#141e36] hover:shadow-xl"
               >
+                <i className="fas fa-clipboard"></i>
                 Start Application Process 
                 <i className="fas fa-arrow-right transition-transform duration-300 group-hover:translate-x-1"></i>
               </button>
               
               <a 
                 href="/universities" 
-                className="group inline-flex items-center gap-2 rounded-lg border-2 border-[#1a2744] bg-white px-7 py-4 text-base font-semibold text-[#1a2744] shadow-sm transition-all duration-300 hover:-translate-y-1 hover:bg-[#1a2744] hover:text-white hover:shadow-xl"
+                className="group inline-flex items-center gap-3 rounded-lg border-2 border-[#1a2744] bg-white px-7 py-4 text-base font-semibold text-[#1a2744] shadow-sm transition-all duration-300 hover:-translate-y-1 hover:bg-[#1a2744] hover:text-white hover:shadow-xl"
               >
+                <i className="fas fa-compass"></i>
                 Explore Universities 
                 <i className="fas fa-arrow-right transition-transform duration-300 group-hover:translate-x-1"></i>
               </a>
@@ -170,9 +172,9 @@ function Home() {
           <div className="mx-auto my-4 h-1 w-12 rounded bg-[#f0b429]"></div>
           <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-5">
             {[
-              { name: "United Kingdom", desc: "Top universities. Diverse culture.", flag: "🇬", img: "https://images.unsplash.com/photo-1529655683826-aba9b3e77383?w=400&h=250&fit=crop" },
+              { name: "United Kingdom", desc: "Top universities. Diverse culture.", flag: "🇬🇧", img: "https://images.unsplash.com/photo-1529655683826-aba9b3e77383?w=400&h=250&fit=crop" },
               { name: "Canada", desc: "Quality education. PGWP opportunities.", flag: "🇨🇦", img: "https://images.unsplash.com/photo-1517935706615-2717063c2225?w=400&h=250&fit=crop" },
-              { name: "Australia", desc: "World-class education. Great lifestyle.", flag: "🇦🇺", img: "https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?w=400&h=250&fit=crop" },
+              { name: "Australia", desc: "World-class education. Great lifestyle.", flag: "🇺", img: "https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?w=400&h=250&fit=crop" },
               { name: "United States", desc: "Endless opportunities.", flag: "🇺🇸", img: "https://images.unsplash.com/photo-1485738422979-f5c462d49f04?w=400&h=250&fit=crop" },
               { name: "Europe", desc: "Affordable education.", flag: "🇪🇺", img: "https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=400&h=250&fit=crop" },
             ].map((d) => (
