@@ -1,14 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { supabase } from "../supabaseClient";
-import { useState, useEffect } from "react";
-import { supabase } from "../supabaseClient";
 
 export const Route = createFileRoute("/signup")({
   head: () => ({ meta: [{ title: "Create Account — Pathway Education Counselling" }] }),
   component: Signup,
 });
-<button onClick={() => setModalOpen(true)} className="hidden rounded-lg bg-[#f0b429]...">Start Application Process</button>
+
 function Signup() {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
@@ -19,9 +17,7 @@ function Signup() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const qualData = (() => {
-    try { return JSON.parse(localStorage.getItem("qualificationData") || "null"); } catch { return null; }
-  })();
+  const qualData = (() => { try { return JSON.parse(localStorage.getItem("qualificationData") || "null"); } catch { return null; } })();
 
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -37,52 +33,22 @@ function Signup() {
     setError("");
     setLoading(true);
 
-    // 1. Create the user account with Supabase Auth
     const { data: authData, error: authError } = await supabase.auth.signUp({
-      email,
-      password,
-      options: {
-        data: {
-          full_name: fullName,
-          phone: phone,
-          avatar_url: profilePic,
-        },
-      },
+      email, password,
+      options: { data: { full_name: fullName, phone, avatar_url: profilePic } },
     });
 
-    if (authError) {
-      setError(authError.message);
-      setLoading(false);
-      return;
-    }
+    if (authError) { setError(authError.message); setLoading(false); return; }
 
-    // 2. Save qualification data to the applications table
     if (qualData && authData.user) {
-      const { error: insertError } = await supabase.from("applications").insert([
-        {
-          degree: qualData.degree,
-          education: qualData.education,
-          countries: qualData.countries,
-          budget: qualData.budget,
-          currency: qualData.currency,
-          institution: qualData.institution,
-          full_name: fullName,
-          email: email,
-          phone: phone,
-          profile_pic: profilePic,
-          password: "hashed_by_supabase",
-          status: "pending",
-        },
-      ]);
-
-      if (insertError) {
-        setError("Account created but failed to save application: " + insertError.message);
-        setLoading(false);
-        return;
-      }
+      const { error: insertError } = await supabase.from("applications").insert([{
+        degree: qualData.degree, education: qualData.education, countries: qualData.countries,
+        budget: qualData.budget, currency: qualData.currency, institution: qualData.institution,
+        full_name: fullName, email, phone, profile_pic: profilePic, password: "hashed_by_supabase", status: "pending",
+      }]);
+      if (insertError) { setError("Account created but failed to save application: " + insertError.message); setLoading(false); return; }
     }
 
-    // 3. Show success
     setShowSuccess(true);
     setLoading(false);
   };
@@ -128,11 +94,7 @@ function Signup() {
             <p className="mt-2 text-gray-600">Fill in your details to complete your application.</p>
             <div className="my-5 h-1 w-12 rounded bg-[#f0b429]"></div>
 
-            {error && (
-              <div className="mb-4 rounded-lg bg-red-50 border border-red-200 p-4 text-sm text-red-600">
-                <i className="fas fa-exclamation-circle mr-2"></i>{error}
-              </div>
-            )}
+            {error && <div className="mb-4 rounded-lg bg-red-50 border border-red-200 p-4 text-sm text-red-600"><i className="fas fa-exclamation-circle mr-2"></i>{error}</div>}
 
             <form onSubmit={handleSubmit} className="space-y-5">
               <div>
@@ -147,25 +109,11 @@ function Signup() {
                   </label>
                 </div>
               </div>
-              <div>
-                <label className="mb-2 block text-sm font-semibold text-[#1a2744]">Full Name <span className="text-red-500">*</span></label>
-                <input type="text" required value={fullName} onChange={(e) => setFullName(e.target.value)} placeholder="Enter your full name" className="w-full rounded-lg border-2 border-gray-200 px-4 py-3 outline-none transition focus:border-[#1a2744]" />
-              </div>
-              <div>
-                <label className="mb-2 block text-sm font-semibold text-[#1a2744]">Email Address <span className="text-red-500">*</span></label>
-                <input type="email" required value={email} onChange={(e) => setEmail(e.target.value)} placeholder="you@example.com" className="w-full rounded-lg border-2 border-gray-200 px-4 py-3 outline-none transition focus:border-[#1a2744]" />
-              </div>
-              <div>
-                <label className="mb-2 block text-sm font-semibold text-[#1a2744]">Phone Number <span className="text-red-500">*</span></label>
-                <input type="tel" required value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="+92 300 0000000" className="w-full rounded-lg border-2 border-gray-200 px-4 py-3 outline-none transition focus:border-[#1a2744]" />
-              </div>
-              <div>
-                <label className="mb-2 block text-sm font-semibold text-[#1a2744]">Password <span className="text-red-500">*</span></label>
-                <input type="password" required value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Create a strong password" className="w-full rounded-lg border-2 border-gray-200 px-4 py-3 outline-none transition focus:border-[#1a2744]" />
-              </div>
-              <button type="submit" disabled={loading} className="w-full rounded-lg bg-[#f0b429] px-6 py-4 text-base font-bold text-[#1a2744] transition hover:bg-[#d9a020] disabled:opacity-50">
-                {loading ? "Creating Account..." : "Create Account"} <i className="fas fa-arrow-right ml-2"></i>
-              </button>
+              <div><label className="mb-2 block text-sm font-semibold text-[#1a2744]">Full Name <span className="text-red-500">*</span></label><input type="text" required value={fullName} onChange={(e) => setFullName(e.target.value)} placeholder="Enter your full name" className="w-full rounded-lg border-2 border-gray-200 px-4 py-3 outline-none transition focus:border-[#1a2744]" /></div>
+              <div><label className="mb-2 block text-sm font-semibold text-[#1a2744]">Email Address <span className="text-red-500">*</span></label><input type="email" required value={email} onChange={(e) => setEmail(e.target.value)} placeholder="you@example.com" className="w-full rounded-lg border-2 border-gray-200 px-4 py-3 outline-none transition focus:border-[#1a2744]" /></div>
+              <div><label className="mb-2 block text-sm font-semibold text-[#1a2744]">Phone Number <span className="text-red-500">*</span></label><input type="tel" required value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="+92 300 0000000" className="w-full rounded-lg border-2 border-gray-200 px-4 py-3 outline-none transition focus:border-[#1a2744]" /></div>
+              <div><label className="mb-2 block text-sm font-semibold text-[#1a2744]">Password <span className="text-red-500">*</span></label><input type="password" required value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Create a strong password" className="w-full rounded-lg border-2 border-gray-200 px-4 py-3 outline-none transition focus:border-[#1a2744]" /></div>
+              <button type="submit" disabled={loading} className="w-full rounded-lg bg-[#f0b429] px-6 py-4 text-base font-bold text-[#1a2744] transition hover:bg-[#d9a020] disabled:opacity-50">{loading ? "Creating Account..." : "Create Account"} <i className="fas fa-arrow-right ml-2"></i></button>
             </form>
           </div>
         </div>
