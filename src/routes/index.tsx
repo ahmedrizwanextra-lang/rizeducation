@@ -69,13 +69,8 @@ function Home() {
       <header className="sticky top-0 z-40 bg-white shadow-sm">
         <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
           <a href="/" className="flex items-center gap-2">
-            <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-[#1a2744]">
-              <i className="fas fa-graduation-cap text-[#f0b429] text-xl"></i>
-            </div>
-            <div className="flex flex-col">
-              <span className="text-xl font-extrabold text-[#1a2744]">Pathway</span>
-              <span className="text-[11px] text-gray-500">Education Counselling</span>
-            </div>
+            <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-[#1a2744]"><i className="fas fa-graduation-cap text-[#f0b429] text-xl"></i></div>
+            <div className="flex flex-col"><span className="text-xl font-extrabold text-[#1a2744]">Pathway</span><span className="text-[11px] text-gray-500">Education Counselling</span></div>
           </a>
           <ul className="hidden gap-8 text-sm font-medium md:flex">
             <li><a href="/" className="text-[#1a2744] relative after:absolute after:bottom-[-6px] after:left-0 after:right-0 after:h-0.5 after:bg-[#1a2744]">Home</a></li>
@@ -159,11 +154,11 @@ function Home() {
           <div className="mx-auto my-4 h-1 w-12 rounded bg-[#f0b429]"></div>
           <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-5">
             {[
-              { name: "United Kingdom", desc: "Top universities. Diverse culture.", flag: "🇧", img: "https://images.unsplash.com/photo-1529655683826-aba9b3e77383?w=400&h=250&fit=crop" },
-              { name: "Canada", desc: "Quality education. PGWP opportunities.", flag: "🇨", img: "https://images.unsplash.com/photo-1517935706615-2717063c2225?w=400&h=250&fit=crop" },
-              { name: "Australia", desc: "World-class education. Great lifestyle.", flag: "🇦🇺", img: "https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?w=400&h=250&fit=crop" },
-              { name: "United States", desc: "Endless opportunities.", flag: "🇸", img: "https://images.unsplash.com/photo-1485738422979-f5c462d49f04?w=400&h=250&fit=crop" },
-              { name: "Europe", desc: "Affordable education.", flag: "🇪", img: "https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=400&h=250&fit=crop" },
+              { name: "United Kingdom", desc: "Top universities. Diverse culture.", flag: "🇬🇧", img: "https://images.unsplash.com/photo-1529655683826-aba9b3e77383?w=400&h=250&fit=crop" },
+              { name: "Canada", desc: "Quality education. PGWP opportunities.", flag: "🇨🇦", img: "https://images.unsplash.com/photo-1517935706615-2717063c2225?w=400&h=250&fit=crop" },
+              { name: "Australia", desc: "World-class education. Great lifestyle.", flag: "🇺", img: "https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?w=400&h=250&fit=crop" },
+              { name: "United States", desc: "Endless opportunities.", flag: "🇺🇸", img: "https://images.unsplash.com/photo-1485738422979-f5c462d49f04?w=400&h=250&fit=crop" },
+              { name: "Europe", desc: "Affordable education.", flag: "🇪🇺", img: "https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=400&h=250&fit=crop" },
             ].map((d) => (
               <div key={d.name} className="overflow-hidden rounded-xl bg-white shadow-lg transition hover:-translate-y-1 hover:shadow-xl">
                 <div className="relative h-40"><img src={d.img} alt={d.name} className="h-full w-full object-cover" /><div className="absolute -bottom-4 left-4 flex h-9 w-9 items-center justify-center rounded-full border-2 border-white bg-white text-xl shadow-lg">{d.flag}</div></div>
@@ -191,17 +186,56 @@ function Home() {
         </div>
       </section>
 
-      <footer className="border-t bg-white px-6 py-10">
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 md:flex-row">
-          <div className="text-sm font-semibold text-[#1a2744]">Trusted by Students Across Pakistan</div>
-          <div className="flex items-center gap-10">
-            <div className="rounded bg-[#c8102e] px-3 py-1 font-bold text-white text-lg">LSE</div>
-            <div className="text-center"><div className="text-xs font-bold uppercase text-[#1a2744]">University of<br />Toronto</div></div>
-            <div className="text-center"><div className="text-xs font-bold uppercase text-[#1a2744]">University of<br />Melbourne</div></div>
-            <div className="text-center"><div className="text-xs font-bold text-[#1a2744]">NUS</div><div className="text-[9px] text-gray-500">National University of Singapore</div></div>
-            <div className="text-center"><div className="text-xs font-bold text-[#1a2744]">UC</div><div className="text-[9px] text-gray-500">University of Canterbury</div></div>
+      {/* FULL DARK FOOTER */}
+      <footer className="bg-[#1a2744] px-6 py-16 text-white">
+        <div className="mx-auto grid max-w-7xl gap-10 md:grid-cols-2 lg:grid-cols-5">
+          <div className="lg:col-span-1">
+            <a href="/" className="flex items-center gap-2">
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-white"><i className="fas fa-graduation-cap text-xl text-[#1a2744]"></i></div>
+              <div className="flex flex-col"><span className="text-lg font-extrabold text-white">Pathway</span><span className="text-[10px] text-gray-300">Education Counselling</span></div>
+            </a>
+            <p className="mt-4 text-sm text-gray-300 leading-relaxed">Guiding O/A Level students in Pakistan to top universities worldwide.</p>
+            <div className="mt-5 flex gap-3">
+              {["facebook-f", "instagram", "linkedin-in", "youtube"].map((ic) => (
+                <a key={ic} href="#" className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-[#f0b429] hover:text-[#1a2744]"><i className={`fab fa-${ic}`}></i></a>
+              ))}
+            </div>
+          </div>
+          <div>
+            <div className="text-sm font-bold uppercase tracking-wider text-[#f0b429]">Quick Links</div>
+            <ul className="mt-4 space-y-2 text-sm text-gray-300">
+              <li><a href="/" className="hover:text-[#f0b429]">Home</a></li>
+              <li><a href="/about" className="hover:text-[#f0b429]">About Us</a></li>
+              <li><a href="/framework" className="hover:text-[#f0b429]">Framework</a></li>
+              <li><a href="/universities" className="hover:text-[#f0b429]">Universities</a></li>
+              <li><a href="/contact" className="hover:text-[#f0b429]">Contact</a></li>
+            </ul>
+          </div>
+          <div>
+            <div className="text-sm font-bold uppercase tracking-wider text-[#f0b429]">Our Services</div>
+            <ul className="mt-4 space-y-2 text-sm text-gray-300">
+              {["Career Counselling", "University Shortlisting", "Application Support", "Visa Guidance", "Pre-Departure Support", "Post-Arrival Support"].map((l) => (
+                <li key={l}><a href="#" className="hover:text-[#f0b429]">{l}</a></li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <div className="text-sm font-bold uppercase tracking-wider text-[#f0b429]">Contact Us</div>
+            <ul className="mt-4 space-y-3 text-sm text-gray-300">
+              <li className="flex items-center gap-2"><i className="fas fa-phone text-[#f0b429]"></i> +92 300 1234567</li>
+              <li className="flex items-center gap-2"><i className="fas fa-envelope text-[#f0b429]"></i> info@pathwaycounselling.pk</li>
+              <li className="flex items-center gap-2"><i className="fas fa-location-dot text-[#f0b429]"></i> Lahore, Pakistan</li>
+              <li className="flex items-center gap-2"><i className="fas fa-clock text-[#f0b429]"></i> Mon - Sat | 10:00 AM - 6:00 PM</li>
+            </ul>
+          </div>
+          <div>
+            <div className="text-sm font-bold uppercase tracking-wider text-[#f0b429]">Subscribe to Our Newsletter</div>
+            <p className="mt-4 text-sm text-gray-300">Get tips, updates and resources straight to your inbox.</p>
+            <input type="email" placeholder="Enter your email" className="mt-4 w-full rounded-lg border border-gray-600 bg-white/5 px-4 py-3 text-sm text-white placeholder-gray-400 outline-none focus:border-[#f0b429]" />
+            <button className="mt-3 w-full rounded-lg bg-[#f0b429] px-4 py-3 text-sm font-bold text-[#1a2744] transition hover:bg-[#d9a020]">Subscribe</button>
           </div>
         </div>
+        <div className="mx-auto mt-12 max-w-7xl border-t border-white/10 pt-6 text-center text-sm text-gray-400">© 2024 Pathway Education Counselling. All rights reserved.</div>
       </footer>
 
       {modalOpen && (
