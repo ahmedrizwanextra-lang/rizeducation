@@ -1,21 +1,38 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
 import { useState, useEffect } from "react";
 import { supabase } from "../supabaseClient";
 
 export const Route = createFileRoute("/contact")({
-  head: () => ({
-    meta: [
-      { title: "Contact Us — Pathway Education Counselling" },
-      {
-        name: "description",
-        content: "Get in touch with Pathway Education Counselling. We're here to help you with your study abroad journey.",
-      },
-    ],
-  }),
+  head: () => ({ meta: [{ title: "Contact Us — Pathway Education Counselling" }] }),
   component: Contact,
 });
-<button onClick={() => setModalOpen(true)} className="hidden rounded-lg bg-[#f0b429]...">Start Application Process</button>
+
+function ProfileButton() {
+  const [user, setUser] = useState<any>(null);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  useEffect(() => { checkUser(); }, []);
+  const checkUser = async () => {
+    const { data: { user } } = await supabase.auth.getUser();
+    setUser(user);
+  };
+  if (!user) {
+    return <a href="/login" className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 text-[#1a2744] transition hover:bg-gray-200"><i className="fas fa-user"></i></a>;
+  }
+  return (
+    <div className="relative">
+      <button onClick={() => setDropdownOpen(!dropdownOpen)} className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-full bg-[#1a2744] text-white transition hover:bg-[#141e36]">
+        {user.user_metadata?.avatar_url ? <img src={user.user_metadata.avatar_url} alt="Profile" className="h-full w-full object-cover" /> : <span className="text-sm font-bold">{user.email?.charAt(0).toUpperCase()}</span>}
+      </button>
+      {dropdownOpen && (
+        <div className="absolute right-0 mt-2 w-48 rounded-lg bg-white py-2 shadow-xl z-50">
+          <a href="/profile" onClick={() => setDropdownOpen(false)} className="block px-4 py-2 text-sm text-[#1a2744] hover:bg-gray-50"><i className="fas fa-user mr-2"></i> My Profile</a>
+          <button onClick={async () => { await supabase.auth.signOut(); window.location.href = "/"; }} className="block w-full px-4 py-2 text-left text-sm text-red-600 hover:bg-gray-50"><i className="fas fa-sign-out-alt mr-2"></i> Logout</button>
+        </div>
+      )}
+    </div>
+  );
+}
+
 function Contact() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [formData, setFormData] = useState({ name: "", email: "", subject: "", message: "" });
@@ -38,19 +55,12 @@ function Contact() {
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
       <style>{`* { font-family: 'Montserrat', sans-serif !important; }`}</style>
 
-      {/* NAVIGATION */}
       <header className="sticky top-0 z-50 bg-white shadow-sm">
         <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
           <a href="/" className="flex items-center gap-2">
-            <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-[#1a2744]">
-              <i className="fas fa-graduation-cap text-[#f0b429] text-xl"></i>
-            </div>
-            <div className="flex flex-col">
-              <span className="text-xl font-extrabold text-[#1a2744]">Pathway</span>
-              <span className="text-[11px] text-gray-500">Education Counselling</span>
-            </div>
+            <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-[#1a2744]"><i className="fas fa-graduation-cap text-[#f0b429] text-xl"></i></div>
+            <div className="flex flex-col"><span className="text-xl font-extrabold text-[#1a2744]">Pathway</span><span className="text-[11px] text-gray-500">Education Counselling</span></div>
           </a>
-
           <ul className="hidden gap-8 text-sm font-medium md:flex">
             <li><a href="/" className="text-gray-700 hover:text-[#1a2744]">Home</a></li>
             <li><a href="/about" className="text-gray-700 hover:text-[#1a2744]">About</a></li>
@@ -58,8 +68,8 @@ function Contact() {
             <li><a href="/universities" className="text-gray-700 hover:text-[#1a2744]">Universities</a></li>
             <li><a href="/contact" className="text-[#1a2744] relative after:absolute after:bottom-[-6px] after:left-0 after:right-0 after:h-0.5 after:bg-[#1a2744]">Contact</a></li>
           </ul>
-
-          <button onClick={() => setModalOpen(true)} className="hidden rounded-lg bg-[#f0b429] px-6 py-3 text-sm font-semibold text-[#1a2744] transition hover:bg-[#d9a020] md:inline-block">Start Application Process</button>
+          <a href="/qualification" className="hidden rounded-lg bg-[#f0b429] px-6 py-3 text-sm font-semibold text-[#1a2744] transition hover:bg-[#d9a020] md:inline-block">Start Application Process</a>
+          <ProfileButton />
           <button onClick={() => setMenuOpen(!menuOpen)} className="md:hidden"><i className="fas fa-bars text-2xl"></i></button>
         </nav>
         {menuOpen && (
@@ -70,89 +80,51 @@ function Contact() {
               <li><a href="/framework" className="block py-2">Framework</a></li>
               <li><a href="/universities" className="block py-2">Universities</a></li>
               <li><a href="/contact" className="block py-2">Contact</a></li>
+              <li><a href="/qualification" className="mt-2 block w-full rounded-lg bg-[#f0b429] px-6 py-3 text-center text-sm font-semibold text-[#1a2744]">Start Application Process</a></li>
             </ul>
           </div>
         )}
       </header>
 
-      {/* HERO SECTION */}
       <section className="bg-[#1a2744] px-6 py-20 text-center text-white">
         <div className="mx-auto max-w-4xl">
           <div className="text-sm font-bold uppercase tracking-widest text-[#f0b429]">Get in Touch</div>
           <h1 className="mt-3 text-5xl font-black leading-tight md:text-6xl">We'd Love to Hear From You</h1>
           <div className="mx-auto my-5 h-1 w-12 rounded bg-[#f0b429]"></div>
-          <p className="text-lg text-gray-300 leading-relaxed">
-            Have questions about studying abroad? Need guidance on your application? 
-            Reach out to us and our expert counsellors will get back to you within 24 hours.
-          </p>
+          <p className="text-lg text-gray-300 leading-relaxed">Have questions about studying abroad? Need guidance on your application? Reach out to us and our expert counsellors will get back to you within 24 hours.</p>
         </div>
       </section>
 
-      {/* CONTACT INFO & FORM */}
       <section className="px-6 py-20">
         <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-2">
-          
-          {/* Contact Information */}
           <div>
             <h2 className="text-3xl font-extrabold text-[#1a2744]">Contact Information</h2>
             <div className="my-4 h-1 w-12 rounded bg-[#f0b429]"></div>
-            <p className="mt-4 text-gray-600 leading-relaxed">
-              Fill out the form and our team will get back to you within 24 hours. You can also reach us directly using the information below.
-            </p>
-
+            <p className="mt-4 text-gray-600 leading-relaxed">Fill out the form and our team will get back to you within 24 hours. You can also reach us directly using the information below.</p>
             <div className="mt-10 space-y-6">
               <div className="flex items-start gap-4">
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-[#f0b429]/10">
-                  <i className="fas fa-phone text-xl text-[#f0b429]"></i>
-                </div>
-                <div>
-                  <h3 className="text-lg font-bold text-[#1a2744]">Phone</h3>
-                  <p className="mt-1 text-gray-600">+92 300 1234567</p>
-                  <p className="text-gray-600">+92 300 7654321</p>
-                </div>
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-[#f0b429]/10"><i className="fas fa-phone text-xl text-[#f0b429]"></i></div>
+                <div><h3 className="text-lg font-bold text-[#1a2744]">Phone</h3><p className="mt-1 text-gray-600">+92 300 1234567</p><p className="text-gray-600">+92 300 7654321</p></div>
               </div>
-
               <div className="flex items-start gap-4">
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-[#f0b429]/10">
-                  <i className="fas fa-envelope text-xl text-[#f0b429]"></i>
-                </div>
-                <div>
-                  <h3 className="text-lg font-bold text-[#1a2744]">Email</h3>
-                  <p className="mt-1 text-gray-600">info@pathwaycounselling.pk</p>
-                  <p className="text-gray-600">admissions@pathwaycounselling.pk</p>
-                </div>
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-[#f0b429]/10"><i className="fas fa-envelope text-xl text-[#f0b429]"></i></div>
+                <div><h3 className="text-lg font-bold text-[#1a2744]">Email</h3><p className="mt-1 text-gray-600">info@pathwaycounselling.pk</p><p className="text-gray-600">admissions@pathwaycounselling.pk</p></div>
               </div>
-
               <div className="flex items-start gap-4">
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-[#f0b429]/10">
-                  <i className="fas fa-location-dot text-xl text-[#f0b429]"></i>
-                </div>
-                <div>
-                  <h3 className="text-lg font-bold text-[#1a2744]">Office Address</h3>
-                  <p className="mt-1 text-gray-600">123 Education Boulevard, Gulberg III,<br />Lahore, Punjab, Pakistan</p>
-                </div>
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-[#f0b429]/10"><i className="fas fa-location-dot text-xl text-[#f0b429]"></i></div>
+                <div><h3 className="text-lg font-bold text-[#1a2744]">Office Address</h3><p className="mt-1 text-gray-600">123 Education Boulevard, Gulberg III,<br />Lahore, Punjab, Pakistan</p></div>
               </div>
-
               <div className="flex items-start gap-4">
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-[#f0b429]/10">
-                  <i className="fas fa-clock text-xl text-[#f0b429]"></i>
-                </div>
-                <div>
-                  <h3 className="text-lg font-bold text-[#1a2744]">Working Hours</h3>
-                  <p className="mt-1 text-gray-600">Monday - Saturday: 10:00 AM - 6:00 PM</p>
-                  <p className="text-gray-600">Sunday: Closed</p>
-                </div>
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-[#f0b429]/10"><i className="fas fa-clock text-xl text-[#f0b429]"></i></div>
+                <div><h3 className="text-lg font-bold text-[#1a2744]">Working Hours</h3><p className="mt-1 text-gray-600">Monday - Saturday: 10:00 AM - 6:00 PM</p><p className="text-gray-600">Sunday: Closed</p></div>
               </div>
             </div>
           </div>
 
-          {/* Contact Form */}
           <div className="rounded-2xl border border-gray-100 bg-white p-8 shadow-xl md:p-10">
             {submitted ? (
               <div className="flex h-full flex-col items-center justify-center text-center py-12">
-                <div className="mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-green-100">
-                  <i className="fas fa-check text-4xl text-green-600"></i>
-                </div>
+                <div className="mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-green-100"><i className="fas fa-check text-4xl text-green-600"></i></div>
                 <h2 className="text-2xl font-black text-[#1a2744]">Message Sent!</h2>
                 <p className="mt-4 text-gray-600">Thank you for reaching out. We will get back to you shortly.</p>
                 <button onClick={() => setSubmitted(false)} className="mt-8 rounded-lg bg-[#1a2744] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#141e36]">Send Another Message</button>
@@ -161,32 +133,14 @@ function Contact() {
               <>
                 <h2 className="text-2xl font-extrabold text-[#1a2744]">Send us a Message</h2>
                 <div className="my-4 h-1 w-12 rounded bg-[#f0b429]"></div>
-                
                 <form onSubmit={handleSubmit} className="mt-8 space-y-5">
                   <div className="grid gap-5 md:grid-cols-2">
-                    <div>
-                      <label className="mb-2 block text-sm font-semibold text-[#1a2744]">Full Name <span className="text-red-500">*</span></label>
-                      <input type="text" name="name" required value={formData.name} onChange={handleChange} placeholder="John Doe" className="w-full rounded-lg border-2 border-gray-200 px-4 py-3 outline-none transition focus:border-[#1a2744]" />
-                    </div>
-                    <div>
-                      <label className="mb-2 block text-sm font-semibold text-[#1a2744]">Email Address <span className="text-red-500">*</span></label>
-                      <input type="email" name="email" required value={formData.email} onChange={handleChange} placeholder="john@example.com" className="w-full rounded-lg border-2 border-gray-200 px-4 py-3 outline-none transition focus:border-[#1a2744]" />
-                    </div>
+                    <div><label className="mb-2 block text-sm font-semibold text-[#1a2744]">Full Name <span className="text-red-500">*</span></label><input type="text" name="name" required value={formData.name} onChange={handleChange} placeholder="John Doe" className="w-full rounded-lg border-2 border-gray-200 px-4 py-3 outline-none transition focus:border-[#1a2744]" /></div>
+                    <div><label className="mb-2 block text-sm font-semibold text-[#1a2744]">Email Address <span className="text-red-500">*</span></label><input type="email" name="email" required value={formData.email} onChange={handleChange} placeholder="john@example.com" className="w-full rounded-lg border-2 border-gray-200 px-4 py-3 outline-none transition focus:border-[#1a2744]" /></div>
                   </div>
-
-                  <div>
-                    <label className="mb-2 block text-sm font-semibold text-[#1a2744]">Subject <span className="text-red-500">*</span></label>
-                    <input type="text" name="subject" required value={formData.subject} onChange={handleChange} placeholder="How can we help you?" className="w-full rounded-lg border-2 border-gray-200 px-4 py-3 outline-none transition focus:border-[#1a2744]" />
-                  </div>
-
-                  <div>
-                    <label className="mb-2 block text-sm font-semibold text-[#1a2744]">Message <span className="text-red-500">*</span></label>
-                    <textarea name="message" required value={formData.message} onChange={handleChange} rows={5} placeholder="Tell us about your goals..." className="w-full rounded-lg border-2 border-gray-200 px-4 py-3 outline-none transition focus:border-[#1a2744]"></textarea>
-                  </div>
-
-                  <button type="submit" className="w-full rounded-lg bg-[#1a2744] px-6 py-4 text-base font-bold text-white transition hover:bg-[#141e36]">
-                    Send Message <i className="fas fa-paper-plane ml-2"></i>
-                  </button>
+                  <div><label className="mb-2 block text-sm font-semibold text-[#1a2744]">Subject <span className="text-red-500">*</span></label><input type="text" name="subject" required value={formData.subject} onChange={handleChange} placeholder="How can we help you?" className="w-full rounded-lg border-2 border-gray-200 px-4 py-3 outline-none transition focus:border-[#1a2744]" /></div>
+                  <div><label className="mb-2 block text-sm font-semibold text-[#1a2744]">Message <span className="text-red-500">*</span></label><textarea name="message" required value={formData.message} onChange={handleChange} rows={5} placeholder="Tell us about your goals..." className="w-full rounded-lg border-2 border-gray-200 px-4 py-3 outline-none transition focus:border-[#1a2744]"></textarea></div>
+                  <button type="submit" className="w-full rounded-lg bg-[#1a2744] px-6 py-4 text-base font-bold text-white transition hover:bg-[#141e36]">Send Message <i className="fas fa-paper-plane ml-2"></i></button>
                 </form>
               </>
             )}
@@ -194,7 +148,6 @@ function Contact() {
         </div>
       </section>
 
-      {/* FOOTER */}
       <footer className="bg-[#1a2744] px-6 py-16 text-white">
         <div className="mx-auto grid max-w-7xl gap-10 md:grid-cols-2 lg:grid-cols-5">
           <div className="lg:col-span-1">
