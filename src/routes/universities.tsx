@@ -34,20 +34,413 @@ function ProfileButton() {
 }
 
 const universities = [
-  { name: "University of Toronto", country: "Canada", flag: "🇨🇦", ranking: 21, img: "https://images.unsplash.com/photo-1562774053-701939374585?w=400&h=250&fit=crop" },
-  { name: "University of British Columbia", country: "Canada", flag: "🇨🇦", ranking: 34, img: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=400&h=250&fit=crop" },
-  { name: "University of Oxford", country: "UK", flag: "🇬🇧", ranking: 3, img: "https://images.unsplash.com/photo-1548504769-900b70ed122e?w=400&h=250&fit=crop" },
-  { name: "Stanford University", country: "USA", flag: "🇺🇸", ranking: 5, img: "https://images.unsplash.com/photo-1562774053-701939374585?w=400&h=250&fit=crop" },
-  { name: "Massachusetts Institute of Technology", country: "USA", flag: "🇺", ranking: 1, img: "https://images.unsplash.com/photo-1564981797816-1043664bf78d?w=400&h=250&fit=crop" },
-  { name: "University of Melbourne", country: "Australia", flag: "🇦", ranking: 14, img: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=400&h=250&fit=crop" },
-  { name: "National University of Singapore", country: "Singapore", flag: "🇸🇬", ranking: 8, img: "https://images.unsplash.com/photo-1562774053-701939374585?w=400&h=250&fit=crop" },
+  {
+    country: "Canada", flag: "🇨🇦",
+    countryRank: 1, qsRank: 30,
+    name: "McGill University",
+    city: "Montreal",
+    academicReq: "Recognized secondary qualification; program prerequisites; competitive grades. For Pakistan, A-Level/HSSC equivalency is assessed by program.",
+    englishReq: "IELTS Academic typically 6.5+; exemptions may apply.",
+    tuition: "CAD 25,000–65,000",
+    feeNotes: "Varies by programme; professional programmes can be higher.",
+  },
+  {
+    country: "Canada", flag: "🇨🇦",
+    countryRank: 2, qsRank: 32,
+    name: "University of Toronto",
+    city: "Toronto",
+    academicReq: "Senior/Grade 12 equivalent with required prerequisites; British-patterned applicants: 5 IGCSE/GCSE subjects + 3 A Levels; competitive grades.",
+    englishReq: "IELTS 6.5 overall, no band below 6.0 for direct admission.",
+    tuition: "CAD 45,000–70,000",
+    feeNotes: "Varies substantially by faculty/program.",
+  },
+  {
+    country: "Canada", flag: "🇨🇦",
+    countryRank: 3, qsRank: 45,
+    name: "University of British Columbia",
+    city: "Vancouver",
+    academicReq: "Recognized secondary qualification plus programme-specific prerequisites; competitive academic profile.",
+    englishReq: "IELTS Academic 6.5, no component below 6.0; TOEFL iBT 90.",
+    tuition: "CAD 45,000–65,000",
+    feeNotes: "Tuition varies by degree and course load.",
+  },
+  {
+    country: "Canada", flag: "🇨🇦",
+    countryRank: 4, qsRank: 96,
+    name: "University of Alberta",
+    city: "Edmonton",
+    academicReq: "Senior secondary/high-school equivalent; required subjects and competitive grades vary by programme.",
+    englishReq: "IELTS Academic typically 6.5 overall; exact test options vary.",
+    tuition: "CAD 32,000–50,000",
+    feeNotes: "Engineering and some professional programmes may cost more.",
+  },
+  {
+    country: "Canada", flag: "🇨🇦",
+    countryRank: 5, qsRank: 113,
+    name: "University of Waterloo",
+    city: "Waterloo",
+    academicReq: "Secondary-school equivalent with programme prerequisites; strong grades expected, especially for engineering/computing.",
+    englishReq: "IELTS Academic typically 6.5 overall; exact component requirements vary.",
+    tuition: "CAD 45,000–75,000",
+    feeNotes: "Programme/faculty dependent; co-op fees may apply.",
+  },
+  {
+    country: "Canada", flag: "🇨🇦",
+    countryRank: 6, qsRank: 142,
+    name: "Western University",
+    city: "London, Ontario",
+    academicReq: "Senior secondary equivalent; required courses and competitive grades depend on programme.",
+    englishReq: "IELTS Academic typically 6.5 overall.",
+    tuition: "CAD 35,000–60,000",
+    feeNotes: "Business, engineering and professional programmes may differ.",
+  },
+  {
+    country: "Canada", flag: "🇨🇦",
+    countryRank: 7, qsRank: 162,
+    name: "Université de Montréal",
+    city: "Montreal",
+    academicReq: "Secondary qualification equivalent to Quebec admission standard; programme prerequisites. Many programmes are French-taught.",
+    englishReq: "French proficiency is required for many programmes; English requirements depend on programme.",
+    tuition: "CAD 25,000–45,000",
+    feeNotes: "Tuition depends on programme and student status.",
+  },
+  {
+    country: "Canada", flag: "🇨🇦",
+    countryRank: 8, qsRank: 174,
+    name: "McMaster University",
+    city: "Hamilton",
+    academicReq: "Senior secondary equivalent with programme-specific prerequisites; competitive grades.",
+    englishReq: "IELTS Academic typically 6.5 overall; programme-specific rules may apply.",
+    tuition: "CAD 35,000–60,000",
+    feeNotes: "Health sciences and professional programmes can differ.",
+  },
+  {
+    country: "Canada", flag: "🇨🇦",
+    countryRank: 9, qsRank: 179,
+    name: "Queen's University",
+    city: "Kingston",
+    academicReq: "For Pakistan, HSSC applicants generally need about 80% to fall in the competitive range; A-Level applicants are assessed by qualification/programme.",
+    englishReq: "English proficiency required where applicable; IELTS commonly around 6.5.",
+    tuition: "CAD 40,000–65,000",
+    feeNotes: "Programme dependent.",
+  },
+  {
+    country: "Canada", flag: "🇨🇦",
+    countryRank: 10, qsRank: 228,
+    name: "University of Ottawa",
+    city: "Ottawa",
+    academicReq: "Recognized secondary qualification with programme prerequisites; competitive grades.",
+    englishReq: "IELTS Academic typically 6.5 overall; some programmes have higher requirements.",
+    tuition: "CAD 35,000–55,000",
+    feeNotes: "Varies by faculty and programme.",
+  },
+  {
+    country: "USA", flag: "🇺🇸",
+    countryRank: 1, qsRank: 1,
+    name: "Massachusetts Institute of Technology (MIT)",
+    city: "Cambridge, Massachusetts",
+    academicReq: "Completed secondary school; extremely competitive academic record with strong mathematics/science preparation.",
+    englishReq: "English proficiency may be required depending on background; strong academic English expected.",
+    tuition: "USD 65,000–70,000",
+    feeNotes: "Tuition/fees only; extensive need-based aid is available to admitted students.",
+  },
+  {
+    country: "USA", flag: "🇺🇸",
+    countryRank: 2, qsRank: 3,
+    name: "Stanford University",
+    city: "Stanford, California",
+    academicReq: "Completed secondary school; highly selective holistic review; strong academic preparation and extracurricular profile.",
+    englishReq: "English proficiency expected; testing/waiver rules depend on applicant background.",
+    tuition: "USD 65,000–70,000",
+    feeNotes: "Tuition/fees; room, board and personal expenses additional.",
+  },
+  {
+    country: "USA", flag: "🇺🇸",
+    countryRank: 3, qsRank: 5,
+    name: "Harvard University",
+    city: "Cambridge, Massachusetts",
+    academicReq: "Completed secondary school; highly selective holistic admission; no simple percentage cutoff.",
+    englishReq: "English proficiency expected; international applicants must demonstrate ability to study in English.",
+    tuition: "USD 60,000–65,000",
+    feeNotes: "Total cost of attendance is higher after housing, food and other costs.",
+  },
+  {
+    country: "USA", flag: "🇺🇸",
+    countryRank: 4, qsRank: 7,
+    name: "California Institute of Technology (Caltech)",
+    city: "Pasadena, California",
+    academicReq: "Completed secondary school with exceptional mathematics/science preparation; highly selective.",
+    englishReq: "English proficiency expected; test requirements depend on current policy.",
+    tuition: "USD 65,000–70,000",
+    feeNotes: "Tuition/fees only; aid may substantially reduce net cost.",
+  },
+  {
+    country: "USA", flag: "🇺🇸",
+    countryRank: 5, qsRank: 15,
+    name: "University of Pennsylvania",
+    city: "Philadelphia, Pennsylvania",
+    academicReq: "Completed secondary school; highly competitive holistic review with strong academic preparation.",
+    englishReq: "English proficiency expected; exact testing policy varies by applicant.",
+    tuition: "USD 65,000–70,000",
+    feeNotes: "Tuition/fees only; housing and living costs additional.",
+  },
+  {
+    country: "USA", flag: "🇺🇸",
+    countryRank: 6, qsRank: 16,
+    name: "Cornell University",
+    city: "Ithaca, New York",
+    academicReq: "Completed secondary school; college/school-specific prerequisites and highly competitive academic profile.",
+    englishReq: "English proficiency may be required depending on educational background.",
+    tuition: "USD 65,000–70,000",
+    feeNotes: "Tuition varies by college; additional fees and living costs apply.",
+  },
+  {
+    country: "USA", flag: "🇺🇸",
+    countryRank: 7, qsRank: 16,
+    name: "Yale University",
+    city: "New Haven, Connecticut",
+    academicReq: "Completed secondary school; highly selective holistic admission.",
+    englishReq: "English proficiency expected; current testing policy should be checked for the applicant's cycle.",
+    tuition: "USD 65,000–70,000",
+    feeNotes: "Tuition/fees; need-based financial aid may substantially reduce net cost.",
+  },
+  {
+    country: "USA", flag: "🇺🇸",
+    countryRank: 8, qsRank: 20,
+    name: "Johns Hopkins University",
+    city: "Baltimore, Maryland",
+    academicReq: "Completed secondary school; strong academic preparation and competitive holistic profile.",
+    englishReq: "English proficiency expected; exact testing policy varies.",
+    tuition: "USD 65,000–70,000",
+    feeNotes: "Tuition/fees; living costs additional.",
+  },
+  {
+    country: "USA", flag: "🇺🇸",
+    countryRank: 9, qsRank: 20,
+    name: "University of California, Berkeley",
+    city: "Berkeley, California",
+    academicReq: "Completed secondary school equivalent; UC subject requirements and competitive grades.",
+    englishReq: "English proficiency required for applicants whose education does not meet UC English-language criteria.",
+    tuition: "USD 50,000–65,000",
+    feeNotes: "International nonresident tuition is substantially higher than California resident tuition.",
+  },
+  {
+    country: "USA", flag: "🇺🇸",
+    countryRank: 10, qsRank: 24,
+    name: "University of Chicago",
+    city: "Chicago, Illinois",
+    academicReq: "Completed secondary school; highly selective holistic admission.",
+    englishReq: "English proficiency expected; exact testing requirements depend on applicant background.",
+    tuition: "USD 65,000–70,000",
+    feeNotes: "Tuition/fees only; housing and living costs additional.",
+  },
+  {
+    country: "UK", flag: "🇬🇧",
+    countryRank: 1, qsRank: 2,
+    name: "Imperial College London",
+    city: "London",
+    academicReq: "Typically 3 A Levels or equivalent; grades vary by course and can be as high as A*A*A.",
+    englishReq: "IELTS commonly 6.5–7.0 depending on department/course.",
+    tuition: "GBP 35,000–55,000",
+    feeNotes: "International tuition varies significantly by course.",
+  },
+  {
+    country: "UK", flag: "🇬🇧",
+    countryRank: 2, qsRank: 4,
+    name: "University of Oxford",
+    city: "Oxford",
+    academicReq: "Typically 3 A Levels or equivalent; course-specific requirements commonly range from AAA to A*A*A.",
+    englishReq: "IELTS commonly 7.0–7.5 depending on course.",
+    tuition: "GBP 35,000–55,000",
+    feeNotes: "Medicine and some science courses can be higher.",
+  },
+  {
+    country: "UK", flag: "🇬🇧",
+    countryRank: 3, qsRank: 6,
+    name: "University of Cambridge",
+    city: "Cambridge",
+    academicReq: "Typically 3 A Levels or equivalent; many courses ask for A*A*A or similar.",
+    englishReq: "IELTS commonly 7.5 overall for applicants needing English evidence.",
+    tuition: "GBP 30,000–50,000",
+    feeNotes: "International tuition varies by course; some subjects have additional college fees.",
+  },
+  {
+    country: "UK", flag: "🇬🇧",
+    countryRank: 4, qsRank: 9,
+    name: "University College London (UCL)",
+    city: "London",
+    academicReq: "Typically 3 A Levels or equivalent; course-specific requirements often range from A*A*A to ABB.",
+    englishReq: "IELTS commonly 6.5–7.5 depending on programme.",
+    tuition: "GBP 30,000–45,000",
+    feeNotes: "Course dependent.",
+  },
+  {
+    country: "UK", flag: "🇬🇧",
+    countryRank: 5, qsRank: 31,
+    name: "King's College London",
+    city: "London",
+    academicReq: "Typically 3 A Levels or equivalent; requirements vary by course.",
+    englishReq: "IELTS commonly 6.5–7.5 depending on programme.",
+    tuition: "GBP 28,000–45,000",
+    feeNotes: "Course dependent.",
+  },
+  {
+    country: "UK", flag: "🇬🇧",
+    countryRank: 6, qsRank: 34,
+    name: "University of Edinburgh",
+    city: "Edinburgh",
+    academicReq: "Typically 3 A Levels or equivalent; requirements vary by degree.",
+    englishReq: "IELTS commonly 6.5–7.0 depending on programme.",
+    tuition: "GBP 28,000–40,000",
+    feeNotes: "International tuition varies by degree.",
+  },
+  {
+    country: "UK", flag: "🇬🇧",
+    countryRank: 7, qsRank: 35,
+    name: "University of Manchester",
+    city: "Manchester",
+    academicReq: "Typically 3 A Levels or equivalent; course requirements vary.",
+    englishReq: "IELTS commonly 6.5–7.0 depending on programme.",
+    tuition: "GBP 28,000–40,000",
+    feeNotes: "International fees vary by subject.",
+  },
+  {
+    country: "UK", flag: "🇬🇧",
+    countryRank: 8, qsRank: 51,
+    name: "University of Bristol",
+    city: "Bristol",
+    academicReq: "Typically 3 A Levels or equivalent; course-specific requirements.",
+    englishReq: "IELTS commonly 6.5–7.0 depending on programme.",
+    tuition: "GBP 27,000–40,000",
+    feeNotes: "Subject dependent.",
+  },
+  {
+    country: "UK", flag: "🇬🇧",
+    countryRank: 9, qsRank: 56,
+    name: "London School of Economics and Political Science (LSE)",
+    city: "London",
+    academicReq: "Typically 3 A Levels or equivalent; very strong grades expected, often A*AA or similar.",
+    englishReq: "IELTS commonly 7.0 overall with component requirements depending on programme.",
+    tuition: "GBP 28,000–40,000",
+    feeNotes: "Tuition varies by programme.",
+  },
+  {
+    country: "UK", flag: "🇬🇧",
+    countryRank: 10, qsRank: 74,
+    name: "University of Warwick",
+    city: "Coventry",
+    academicReq: "Typically 3 A Levels or equivalent; requirements vary by course, often around AAB–A*A*A.",
+    englishReq: "IELTS commonly 6.5–7.0 depending on programme.",
+    tuition: "GBP 25,000–35,000",
+    feeNotes: "Course dependent.",
+  },
+  {
+    country: "Australia", flag: "🇦🇺",
+    countryRank: 1, qsRank: 19,
+    name: "The University of New South Wales (UNSW Sydney)",
+    city: "Sydney",
+    academicReq: "Recognized senior secondary qualification; ATAR-equivalent/academic score varies by degree.",
+    englishReq: "IELTS typically 6.5 overall; some degrees require higher.",
+    tuition: "AUD 45,000–65,000",
+    feeNotes: "Annual fee varies by course and study load.",
+  },
+  {
+    country: "Australia", flag: "🇦🇺",
+    countryRank: 2, qsRank: 22,
+    name: "The University of Melbourne",
+    city: "Melbourne",
+    academicReq: "Recognized secondary qualification; course prerequisites and academic score requirements vary.",
+    englishReq: "IELTS typically 6.5 overall; some courses require higher.",
+    tuition: "AUD 45,000–65,000",
+    feeNotes: "Fee depends on course and subject mix.",
+  },
+  {
+    country: "Australia", flag: "🇦🇺",
+    countryRank: 3, qsRank: 28,
+    name: "The University of Sydney",
+    city: "Sydney",
+    academicReq: "Recognized senior secondary qualification; equivalent rank/score varies by course.",
+    englishReq: "IELTS typically 6.5 overall; higher for some programmes.",
+    tuition: "AUD 50,000–65,000",
+    feeNotes: "Course dependent.",
+  },
+  {
+    country: "Australia", flag: "🇦🇺",
+    countryRank: 4, qsRank: 29,
+    name: "Australian National University (ANU)",
+    city: "Canberra",
+    academicReq: "Recognized secondary qualification; minimum selection rank varies by degree.",
+    englishReq: "IELTS typically 6.5 overall; course-specific exceptions apply.",
+    tuition: "AUD 45,000–60,000",
+    feeNotes: "Course dependent.",
+  },
+  {
+    country: "Australia", flag: "🇦🇺",
+    countryRank: 5, qsRank: 31,
+    name: "Monash University",
+    city: "Melbourne",
+    academicReq: "Recognized secondary qualification; academic score and prerequisites vary by course.",
+    englishReq: "IELTS typically 6.5 overall; some degrees require higher.",
+    tuition: "AUD 40,000–60,000",
+    feeNotes: "Course dependent.",
+  },
+  {
+    country: "Australia", flag: "🇦🇺",
+    countryRank: 6, qsRank: 40,
+    name: "The University of Queensland",
+    city: "Brisbane",
+    academicReq: "Recognized secondary qualification; selection rank/prerequisites vary by programme.",
+    englishReq: "IELTS typically 6.5 overall; some programmes require higher.",
+    tuition: "AUD 40,000–60,000",
+    feeNotes: "Course dependent.",
+  },
+  {
+    country: "Australia", flag: "🇦🇺",
+    countryRank: 7, qsRank: 77,
+    name: "The University of Western Australia",
+    city: "Perth",
+    academicReq: "Recognized secondary qualification; equivalent entry score varies by course.",
+    englishReq: "IELTS typically 6.5 overall.",
+    tuition: "AUD 35,000–55,000",
+    feeNotes: "Course dependent.",
+  },
+  {
+    country: "Australia", flag: "🇦🇺",
+    countryRank: 8, qsRank: 79,
+    name: "Adelaide University",
+    city: "Adelaide",
+    academicReq: "Recognized secondary qualification; course prerequisites and academic score vary.",
+    englishReq: "IELTS typically 6.5 overall; some courses require higher.",
+    tuition: "AUD 35,000–55,000",
+    feeNotes: "Course dependent.",
+  },
+  {
+    country: "Australia", flag: "🇦🇺",
+    countryRank: 9, qsRank: 87,
+    name: "University of Technology Sydney (UTS)",
+    city: "Sydney",
+    academicReq: "Recognized secondary qualification; equivalent academic score varies by course.",
+    englishReq: "IELTS 6.5 is common; UTS programme requirements can differ.",
+    tuition: "AUD 40,000–55,000",
+    feeNotes: "Course dependent.",
+  },
+  {
+    country: "Australia", flag: "🇦🇺",
+    countryRank: 10, qsRank: 119,
+    name: "RMIT University",
+    city: "Melbourne",
+    academicReq: "Recognized secondary qualification; Bachelor admission commonly lists GPA 2+, IB 25+, SAT 1060+, or equivalent depending on qualification.",
+    englishReq: "IELTS 6.5+; TOEFL 79+ for general admission.",
+    tuition: "AUD 35,000–55,000",
+    feeNotes: "Course dependent.",
+  },
 ];
 
 const countries = [
-  { name: "Canada", flag: "🇨🇦", desc: "Top universities. Quality education. Bright future.", img: "https://images.unsplash.com/photo-1517935706615-2717063c2225?w=600&h=400&fit=crop" },
-  { name: "United Kingdom", flag: "🇬🇧", desc: "World-renowned institutions. Global recognition. Endless possibilities.", img: "https://images.unsplash.com/photo-1529655683826-aba9b3e77383?w=600&h=400&fit=crop" },
-  { name: "United States", flag: "🇺", desc: "Innovation. Leadership. Top-ranked universities. Limitless potential.", img: "https://images.unsplash.com/photo-1485738422979-f5c462d49f04?w=600&h=400&fit=crop" },
-  { name: "Australia", flag: "🇺", desc: "World-class education. Vibrant lifestyle. Global exposure.", img: "https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?w=600&h=400&fit=crop" },
+  { key: "Canada", name: "Canada", flag: "🇨🇦", desc: "10 top-ranked universities. CAD 25,000–75,000 indicative tuition.", img: "https://images.unsplash.com/photo-1517935706615-2717063c2225?w=600&h=400&fit=crop" },
+  { key: "UK", name: "United Kingdom", flag: "🇬🇧", desc: "10 top-ranked universities. GBP 25,000–55,000 indicative tuition.", img: "https://images.unsplash.com/photo-1529655683826-aba9b3e77383?w=600&h=400&fit=crop" },
+  { key: "USA", name: "United States", flag: "🇺🇸", desc: "10 top-ranked universities. USD 50,000–70,000 indicative tuition.", img: "https://images.unsplash.com/photo-1485738422979-f5c462d49f04?w=600&h=400&fit=crop" },
+  { key: "Australia", name: "Australia", flag: "🇦🇺", desc: "10 top-ranked universities. AUD 35,000–65,000 indicative tuition.", img: "https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?w=600&h=400&fit=crop" },
 ];
 
 const stats = [
@@ -60,10 +453,10 @@ const stats = [
 
 function Universities() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [scrollIndex, setScrollIndex] = useState(0);
+  const [countryFilter, setCountryFilter] = useState("All");
 
-  const scrollLeft = () => setScrollIndex((prev) => Math.max(0, prev - 1));
-  const scrollRight = () => setScrollIndex((prev) => Math.min(universities.length - 4, prev + 1));
+  const filterTabs = ["All", "Canada", "USA", "UK", "Australia"];
+  const filteredUniversities = countryFilter === "All" ? universities : universities.filter((u) => u.country === countryFilter);
 
   return (
     <div className="min-h-screen bg-white font-sans text-[#1a2744]" style={{ fontFamily: "'Montserrat', sans-serif" }}>
@@ -133,36 +526,62 @@ function Universities() {
         </div>
       </section>
 
-      <section className="bg-white px-6 py-20 text-center">
+      <section id="university-list" className="bg-white px-6 py-20 text-center">
         <div className="mx-auto max-w-7xl">
-          <h2 className="text-3xl font-extrabold text-[#1a2744]">Top Universities</h2>
+          <h2 className="text-3xl font-extrabold text-[#1a2744]">Top 40 Universities — QS World Rankings 2026</h2>
           <div className="mx-auto my-4 h-1 w-12 rounded bg-[#f0b429]"></div>
-          <p className="mx-auto mb-12 max-w-2xl text-gray-600">Discover some of the best universities in the world.</p>
-          <div className="relative">
-            <button onClick={scrollLeft} className="absolute -left-4 top-1/2 z-20 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white shadow-lg transition hover:bg-gray-100"><i className="fas fa-chevron-left text-[#1a2744]"></i></button>
-            <button onClick={scrollRight} className="absolute -right-4 top-1/2 z-20 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white shadow-lg transition hover:bg-gray-100"><i className="fas fa-chevron-right text-[#1a2744]"></i></button>
-            <div className="overflow-hidden">
-              <div className="flex gap-6 transition-transform duration-300" style={{ transform: `translateX(-${scrollIndex * 25}%)` }}>
-                {universities.map((uni) => (
-                  <div key={uni.name} className="min-w-[280px] flex-shrink-0 rounded-xl border border-gray-200 bg-white overflow-hidden shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
-                    <div className="h-40 overflow-hidden"><img src={uni.img} alt={uni.name} className="h-full w-full object-cover" /></div>
-                    <div className="p-5 text-left">
-                      <div className="flex items-center gap-3">
-                        <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-100"><i className="fas fa-university text-[#1a2744]"></i></div>
-                        <h3 className="text-base font-bold text-[#1a2744] leading-tight">{uni.name}</h3>
-                      </div>
-                      <div className="mt-3 flex items-center gap-2 text-sm text-gray-600"><span>{uni.country}</span><span className="text-lg">{uni.flag}</span></div>
-                      <div className="mt-3 flex items-center justify-between border-t border-gray-100 pt-3"><span className="text-xs text-gray-500">QS World Ranking</span><span className="text-lg font-black text-[#1a2744]">#{uni.ranking}</span></div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div className="mt-6 flex justify-center gap-2">
-              {[0, 1, 2, 3].map((i) => (<div key={i} className={`h-2 w-2 rounded-full ${i === scrollIndex ? "bg-[#1a2744]" : "bg-gray-300"}`}></div>))}
-            </div>
-            <a href="/universities" className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[#1a2744] hover:text-[#f0b429]">View All Universities <i className="fas fa-arrow-right"></i></a>
+          <p className="mx-auto mb-10 max-w-2xl text-gray-600">The top 10 QS-ranked universities in each of our four core destinations, with indicative tuition and admission requirements.</p>
+
+          <div className="mb-10 flex flex-wrap items-center justify-center gap-3">
+            {filterTabs.map((tab) => (
+              <button
+                key={tab}
+                onClick={() => setCountryFilter(tab)}
+                className={`rounded-full px-5 py-2 text-sm font-semibold transition ${
+                  countryFilter === tab ? "bg-[#1a2744] text-white shadow-md" : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                }`}
+              >
+                {tab === "All" ? "All Countries" : tab === "UK" ? "United Kingdom" : tab === "USA" ? "United States" : tab}
+                <span className="ml-2 opacity-70">{tab === "All" ? universities.length : universities.filter((u) => u.country === tab).length}</span>
+              </button>
+            ))}
           </div>
+
+          <div className="grid grid-cols-1 gap-6 text-left sm:grid-cols-2 lg:grid-cols-3">
+            {filteredUniversities.map((uni) => (
+              <div key={uni.name} className="flex flex-col rounded-xl border border-gray-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
+                <div className="flex items-center justify-between">
+                  <span className="rounded-full bg-[#1a2744] px-3 py-1 text-xs font-bold text-white">World #{uni.qsRank}</span>
+                  <span className="text-2xl">{uni.flag}</span>
+                </div>
+                <h3 className="mt-4 text-base font-bold leading-snug text-[#1a2744]">{uni.name}</h3>
+                <div className="mt-1 text-sm text-gray-500"><i className="fas fa-location-dot mr-1 text-[#f0b429]"></i>{uni.city}, {uni.country}</div>
+                <div className="mt-4 flex items-center justify-between border-t border-gray-100 pt-3">
+                  <span className="text-xs text-gray-500">{uni.country} Rank</span>
+                  <span className="text-sm font-bold text-[#1a2744]">#{uni.countryRank}</span>
+                </div>
+                <div className="mt-2 flex items-center justify-between">
+                  <span className="text-xs text-gray-500">Indicative Tuition</span>
+                  <span className="text-sm font-semibold text-[#1a2744]">{uni.tuition}</span>
+                </div>
+                <details className="group mt-4 border-t border-gray-100 pt-3">
+                  <summary className="flex cursor-pointer list-none items-center justify-between text-xs font-bold uppercase tracking-wide text-[#f0b429]">
+                    Admission &amp; English Requirements
+                    <i className="fas fa-chevron-down text-[10px] transition group-open:rotate-180"></i>
+                  </summary>
+                  <div className="mt-3 space-y-2 text-xs leading-relaxed text-gray-600">
+                    <p><span className="font-semibold text-[#1a2744]">Academic:</span> {uni.academicReq}</p>
+                    <p><span className="font-semibold text-[#1a2744]">English:</span> {uni.englishReq}</p>
+                    <p><span className="font-semibold text-[#1a2744]">Fee Notes:</span> {uni.feeNotes}</p>
+                  </div>
+                </details>
+              </div>
+            ))}
+          </div>
+
+          <p className="mx-auto mt-12 max-w-3xl text-xs leading-relaxed text-gray-400">
+            University list based on the QS World University Rankings 2026 country lists. Tuition figures are indicative annual international undergraduate planning ranges, not guaranteed quotes, and vary by degree, faculty, credit load and intake. Requirements are general planning baselines — admission is programme-specific and competitive. Living costs, insurance, deposits and visa fees are not included. Book a free consultation with our counsellors to verify the exact programme, intake and fee schedule for your shortlist.
+          </p>
         </div>
       </section>
 
@@ -172,14 +591,21 @@ function Universities() {
           <div className="mx-auto my-4 h-1 w-12 rounded bg-[#f0b429]"></div>
           <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
             {countries.map((c) => (
-              <div key={c.name} className="group relative overflow-hidden rounded-xl shadow-lg transition hover:-translate-y-1 hover:shadow-xl">
+              <button
+                key={c.name}
+                onClick={() => {
+                  setCountryFilter(c.key);
+                  document.getElementById("university-list")?.scrollIntoView({ behavior: "smooth" });
+                }}
+                className="group relative overflow-hidden rounded-xl text-left shadow-lg transition hover:-translate-y-1 hover:shadow-xl"
+              >
                 <img src={c.img} alt={c.name} className="h-64 w-full object-cover transition group-hover:scale-105" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
                 <div className="absolute bottom-0 left-0 right-0 p-6 text-left text-white">
                   <div className="flex items-center gap-2"><span className="text-2xl">{c.flag}</span><h3 className="text-xl font-bold">{c.name}</h3></div>
                   <p className="mt-2 text-sm opacity-90 leading-snug">{c.desc}</p>
                 </div>
-              </div>
+              </button>
             ))}
           </div>
         </div>
