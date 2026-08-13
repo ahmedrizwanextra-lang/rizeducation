@@ -70,8 +70,9 @@ function Universities() {
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+      <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-      <style>{`*:not(.fa):not(.fas):not(.far):not(.fab):not(.fal):not(.fad) { font-family: 'Montserrat', sans-serif !important; }`}</style>
+      <style>{`*:not(.fa):not(.fas):not(.far):not(.fab):not(.fal):not(.fad) { font-family: 'Montserrat', sans-serif !important; } header ul a, header ul button { font-family: 'Poppins', sans-serif !important; }`}</style>
 
       <header className="sticky top-0 z-50 bg-white shadow-sm">
         <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
@@ -80,11 +81,11 @@ function Universities() {
             <div className="flex flex-col"><span className="text-xl font-extrabold text-[#1a2744]">Pathway</span><span className="text-[11px] text-gray-500">Education Counselling</span></div>
           </a>
           <ul className="hidden gap-8 text-sm font-medium md:flex">
-            <li><a href="/" className="text-gray-700 hover:text-[#1a2744]">Home</a></li>
-            <li><a href="/about" className="text-gray-700 hover:text-[#1a2744]">About</a></li>
-            <li><a href="/framework" className="text-gray-700 hover:text-[#1a2744]">Framework</a></li>
+            <li><a href="/" className="relative text-gray-700 transition-colors duration-300 hover:text-[#1a2744] after:absolute after:bottom-[-6px] after:left-0 after:h-0.5 after:w-0 after:bg-[#f0b429] after:transition-all after:duration-300 hover:after:w-full">Home</a></li>
+            <li><a href="/about" className="relative text-gray-700 transition-colors duration-300 hover:text-[#1a2744] after:absolute after:bottom-[-6px] after:left-0 after:h-0.5 after:w-0 after:bg-[#f0b429] after:transition-all after:duration-300 hover:after:w-full">About</a></li>
+            <li><a href="/framework" className="relative text-gray-700 transition-colors duration-300 hover:text-[#1a2744] after:absolute after:bottom-[-6px] after:left-0 after:h-0.5 after:w-0 after:bg-[#f0b429] after:transition-all after:duration-300 hover:after:w-full">Framework</a></li>
             <li><a href="/universities" className="text-[#1a2744] relative after:absolute after:bottom-[-6px] after:left-0 after:right-0 after:h-0.5 after:bg-[#1a2744]">Universities</a></li>
-            <li><a href="/contact" className="text-gray-700 hover:text-[#1a2744]">Contact</a></li>
+            <li><a href="/contact" className="relative text-gray-700 transition-colors duration-300 hover:text-[#1a2744] after:absolute after:bottom-[-6px] after:left-0 after:h-0.5 after:w-0 after:bg-[#f0b429] after:transition-all after:duration-300 hover:after:w-full">Contact</a></li>
           </ul>
           <a href="/qualification" className="hidden rounded-lg bg-[#f0b429] px-6 py-3 text-sm font-semibold text-[#1a2744] transition hover:bg-[#d9a020] md:inline-block">Start Application Process</a>
           <ProfileButton />
@@ -93,12 +94,12 @@ function Universities() {
         {menuOpen && (
           <div className="border-t bg-white md:hidden">
             <ul className="flex flex-col gap-2 px-6 py-4">
-              <li><a href="/" className="block py-2">Home</a></li>
-              <li><a href="/about" className="block py-2">About</a></li>
-              <li><a href="/framework" className="block py-2">Framework</a></li>
-              <li><a href="/universities" className="block py-2">Universities</a></li>
-              <li><a href="/contact" className="block py-2">Contact</a></li>
-              <li><a href="/qualification" className="mt-2 block w-full rounded-lg bg-[#f0b429] px-6 py-3 text-center text-sm font-semibold text-[#1a2744]">Start Application Process</a></li>
+              <li><a href="/" className="block rounded-lg px-3 py-2 text-gray-700 transition-colors duration-200 hover:bg-gray-50 hover:text-[#1a2744]">Home</a></li>
+              <li><a href="/about" className="block rounded-lg px-3 py-2 text-gray-700 transition-colors duration-200 hover:bg-gray-50 hover:text-[#1a2744]">About</a></li>
+              <li><a href="/framework" className="block rounded-lg px-3 py-2 text-gray-700 transition-colors duration-200 hover:bg-gray-50 hover:text-[#1a2744]">Framework</a></li>
+              <li><a href="/universities" className="block rounded-lg px-3 py-2 text-[#1a2744] transition-colors duration-200 hover:bg-gray-50">Universities</a></li>
+              <li><a href="/contact" className="block rounded-lg px-3 py-2 text-gray-700 transition-colors duration-200 hover:bg-gray-50 hover:text-[#1a2744]">Contact</a></li>
+              <li><a href="/qualification" className="mt-2 block w-full rounded-lg bg-[#f0b429] px-6 py-3 text-center text-sm font-semibold text-[#1a2744] transition hover:bg-[#d9a020]">Start Application Process</a></li>
             </ul>
           </div>
         )}
